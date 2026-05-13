@@ -15,9 +15,7 @@
         <!-- LEFT: Featured Blog -->
         <div class="col-lg-8">
 
-            @if($blogs->count())
-                @php $featured = $blogs->first(); @endphp
-
+            @if($featured)
                 <div class="card border-0 h-100">
                     <img src="{{ asset($featured->image) }}" class="card-img-top rounded feature-image" alt="{{ $featured->title }}" loading="lazy">
 
@@ -44,7 +42,7 @@
         <!-- RIGHT: Trending Posts -->
         <div class="col-lg-4">
 
-            @if ($blogs->count())
+            @if ($trendingBlogs->count())
             
                 <h4 class="fw-bold mb-4">Trending Posts</h4>
 
@@ -78,7 +76,7 @@
 
         </div>
 
-        @if (!$blogs->count())
+        @if (!$featured && !$latestBlogs->count())
         <div class="col-12">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center py-5">
@@ -87,6 +85,52 @@
                 </div>
             </div>
         </div>
+        @endif
+
+        @if ($latestBlogs->count())
+            <div class="col-12 mt-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold mb-0">Latest Blogs</h3>
+                </div>
+
+                <div class="row g-4">
+                    @foreach($latestBlogs as $blog)
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card border-0 h-100 shadow-sm">
+                                <img src="{{ asset($blog->image) }}"
+                                    class="card-img-top rounded-top"
+                                    alt="{{ $blog->image_alt ?? $blog->title }}"
+                                    loading="lazy"
+                                    style="height: 220px; object-fit: cover;">
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="fw-bold mb-2">
+                                        <a href="{{ route('blogs.show', $blog->slug) }}" class="text-dark text-decoration-none">
+                                            {{ Str::limit($blog->title, 80) }}
+                                        </a>
+                                    </h5>
+
+                                    <p class="text-muted small mb-2">
+                                        By {{ $blog->author ?? 'Admin' }}
+                                    </p>
+
+                                    <p class="text-muted mb-4">
+                                        {!! Str::limit(strip_tags($blog->short_description), 130) !!}
+                                    </p>
+
+                                    <a href="{{ route('blogs.show', $blog->slug) }}" class="btn btn-outline-primary btn-sm mt-auto align-self-start">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="mt-4">
+                    {{ $latestBlogs->links() }}
+                </div>
+            </div>
         @endif
 
     </div>

@@ -157,6 +157,13 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-12">
+                                        {!! NoCaptcha::display() !!}
+                                        @error('g-recaptcha-response')
+                                            <div class="text-danger small mt-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                     <!-- Submit -->
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary px-4">
@@ -172,4 +179,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {!! NoCaptcha::renderJs() !!}
 @endsection

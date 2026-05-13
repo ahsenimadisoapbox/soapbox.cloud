@@ -13,16 +13,23 @@ class BlogController extends Controller
     public function index()
     {
         $meta = $this->getMeta('blogs');
-        $blogs = Blog::where('status', 1)
+        $featured = Blog::where('status', 1)
             ->orderBy('id', 'DESC')
-            ->paginate(9);
+            ->first();
+
+        $latestBlogs = Blog::where('status', 1)
+            ->when($featured, function ($query) use ($featured) {
+                $query->where('id', '!=', $featured->id);
+            })
+            ->orderBy('id', 'DESC')
+            ->paginate(6);
 
         $trendingBlogs = Blog::where('status', 1)
             ->orderBy('views', 'DESC')
             ->take(5)
             ->get();
         $faqs = $this->getFaqs('blogs');
-        return view('blogs.index', compact('blogs', 'meta', 'trendingBlogs', 'faqs'));
+        return view('blogs.index', compact('featured', 'latestBlogs', 'meta', 'trendingBlogs', 'faqs'));
     }
 
     public function show($slug)

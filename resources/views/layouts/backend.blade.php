@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    @stack('styles')
 </head>
 
 <body>
@@ -153,7 +154,7 @@
     </script>
 
     <script src="{{ asset('admin/js/script.js') }}?v={{ filemtime(public_path('admin/js/script.js')) }}"></script>
-
+    @stack('scripts')
 </body>
 
 </html>

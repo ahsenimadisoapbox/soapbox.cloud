@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Admin\BlogController as AdminBlog;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\VisitorAnalyticsController;
+use App\Http\Controllers\AdminDashboardController;
 
 use App\Http\Controllers\AssetController;
 
@@ -52,6 +53,7 @@ Auth::routes();
 
 Route::middleware('auth')->prefix('admins')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/metrics', [AdminDashboardController::class, 'getMetrics'])->name('admin.dashboard.metrics');
     Route::get('/demo', [DemoController::class, 'index'])->name('admin.demo.index');
     Route::get('/visitor-analytics', [VisitorAnalyticsController::class, 'index'])->name('admin.visitor-analytics.index');
     Route::get('/ehs-assessments', [AdminEhsAssessmentController::class, 'index'])->name('admin.ehs_assessments.index');

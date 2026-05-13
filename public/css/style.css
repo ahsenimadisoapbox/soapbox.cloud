@@ -1727,6 +1727,7 @@ body.authenticated #mainNavbar {
 
 .blog-content {
     overflow-x: auto;
+    overflow-y: hidden;
     max-width: 100%;
 }
 

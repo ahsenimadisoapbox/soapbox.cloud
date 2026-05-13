@@ -75,7 +75,7 @@
 <section class="section-pad py-5 bg-light-blue">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 pb-3 pt-1" data-aos="fade-up">
+      <div class="col-md-6 pb-3 pt-1 overflow-visible" data-aos="fade-up">
         <div class="card border-0 rounded-4 shadow border-start border-primary border-4">
           <div class="card-body p-4">
             <div class="text-third fw-semibold tag">FOUNDER</div>
@@ -107,7 +107,7 @@
     <p class="tag-line text-center mt-4">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
   </div>
 </section>
-<section class="section-pad px-3 pt-3 pb-5">
+<section class="section-pad px-3 py-5">
   <div class="container max-w-1000" data-aos="fade-up">
     <div class="tag">RECOGNITION OVER PERSUASION</div>
     <h2 class="section-title">5 Gaps Nobody Talks About</h2>
@@ -209,6 +209,7 @@
             </div>
             <div class="flip-card-back">
               <div class="card-body p-2">
+                <h5 class="card-title text-first fw-bold mb-2">{{ $module->name }}</h5>
                 {!! $module->short_description !!}
                 <a href="{{route('modules.show', $module->slug)}}" class="nav-link text-third fs-6 mt-3">Learn more <i class="fa-solid fa-angles-right"></i></a>
               </div>

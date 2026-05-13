@@ -9,10 +9,13 @@ class AssetController extends Controller
 {
     public function css()
     {
-        return Cache::rememberForever('minified_css_v1', function () {
+        $path = public_path('css/style.css');
+        $cacheKey = 'minified_css_' . filemtime($path);
+
+        return Cache::rememberForever($cacheKey, function () use ($path) {
             $minifier = new Minify\CSS();
 
-            $minifier->add(public_path('css/style.css'));
+            $minifier->add($path);
 
             return response($minifier->minify(), 200)
                 ->header('Content-Type', 'text/css')

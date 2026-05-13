@@ -30,10 +30,30 @@
     $title = urlencode($blog->title);
 @endphp
 <div class="container pt-5 pb-5">
+    <div class="d-none d-lg-flex justify-content-between align-items-center gap-3 mb-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('home') }}" class="text-decoration-none">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('blogs.index') }}" class="text-decoration-none">Blogs</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{ Str::limit($blog->title, 45) }}
+                </li>
+            </ol>
+        </nav>
+
+        <a href="{{ route('blogs.index') }}" class="btn btn-outline-primary btn-sm align-self-start align-self-md-auto">
+            <i class="fas fa-arrow-left me-2"></i>Back to Blogs
+        </a>
+    </div>
+
     <h1 class="fw-bold mb-3">{{ $blog->title }}</h1>
     <p class="text-muted fw-semibold">{{ $blog->created_at->format('F j, Y') }}</p>
     <div class="row g-4">
-        <div class="col-lg-8">
+        <div class="col-lg-8 blog-main">
 
             @if($blog->image)
                 <img src="{{ asset($blog->image) }}" class="img-fluid rounded mb-4"
@@ -45,7 +65,7 @@
             </div>
 
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 blog-sidebar">
             <div class="card bg-primary-subtle border-0 rounded-4 mb-4">
                 <div class="card-body">
                     <h5 class="card-title mb-3">Post Author</h5>
@@ -93,13 +113,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="toc-wrapper d-none d-lg-block">
-                <div id="toc-container">
-                    <div class="card bg-body-secondary border-0 rounded-4 mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title mb-3">Table of Contents</h5>
-                            <ul id="toc-list" class="list-unstyled small"></ul>
-                        </div>
+            <div id="toc-container" class="toc-wrapper d-none d-lg-block">
+                <div class="card bg-body-secondary border-0 rounded-4 mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Table of Contents</h5>
+                        <ul id="toc-list" class="list-unstyled small"></ul>
                     </div>
                 </div>
             </div>
@@ -192,13 +210,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const content = document.querySelector(".blog-content");
     const tocList = document.getElementById("toc-list");
-    const tocContainer = document.getElementById("toc-container");
-    const container = document.querySelector(".container.pt-5.pb-150");
+    const blogMain = document.querySelector(".blog-main");
+    const blogSidebar = document.querySelector(".blog-sidebar");
 
     const headings = content.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
-    const offset = 140;
-    const stickyStart = 360; // 🔥 start sticky after 360px
+    const offset = 120;
+
+    function syncSidebarHeight() {
+        if (!blogMain || !blogSidebar) {
+            return;
+        }
+
+        if (window.innerWidth < 992) {
+            blogSidebar.style.minHeight = "";
+            return;
+        }
+
+        blogSidebar.style.minHeight = blogMain.offsetHeight + "px";
+    }
+
+    syncSidebarHeight();
+    window.addEventListener("load", syncSidebarHeight);
+    window.addEventListener("resize", syncSidebarHeight);
 
     /* ---------- Generate Table of Contents ---------- */
 
@@ -236,62 +270,6 @@ document.addEventListener("DOMContentLoaded", function () {
         tocList.appendChild(li);
 
     });
-
-    /* ---------- Sticky TOC (Desktop Only) ---------- */
-
-    function handleSticky() {
-
-        if (!tocContainer || !container) return;
-
-        // ❌ Disable sticky on mobile
-        if (window.innerWidth <= 768) {
-            tocContainer.classList.remove("toc-fixed", "toc-bottom");
-            tocContainer.style.position = "relative";
-            return;
-        }
-
-        const scrollTop = window.scrollY;
-
-        // 🔥 NEW: don't activate before 200px
-        if (scrollTop < stickyStart) {
-            tocContainer.classList.remove("toc-fixed", "toc-bottom");
-            return;
-        }
-
-        const containerTop = container.offsetTop;
-        const containerBottom = containerTop + container.offsetHeight;
-        const tocHeight = tocContainer.offsetHeight;
-
-        // ✅ Normal sticky state
-        if (
-            scrollTop + offset > containerTop &&
-            scrollTop + tocHeight + offset < containerBottom
-        ) {
-            tocContainer.classList.remove("toc-bottom");
-            tocContainer.classList.add("toc-fixed");
-
-        }
-        // ✅ Stick to bottom when reaching container end
-        else if (scrollTop + tocHeight + offset >= containerBottom) {
-
-            tocContainer.classList.remove("toc-fixed");
-            tocContainer.classList.add("toc-bottom");
-
-        }
-        // ✅ Default state
-        else {
-
-            tocContainer.classList.remove("toc-fixed", "toc-bottom");
-
-        }
-    }
-
-    // 🔥 Run on scroll
-    window.addEventListener("scroll", handleSticky);
-    window.addEventListener("resize", handleSticky);
-
-    // 🔥 Run once on load (important)
-    handleSticky();
 
 });
 </script>

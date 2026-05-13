@@ -97,13 +97,15 @@
                     @foreach($latestBlogs as $blog)
                         <div class="col-md-6 col-lg-4">
                             <div class="card border-0 h-100 shadow-sm">
-                                <img src="{{ asset($blog->image) }}"
-                                    class="card-img-top rounded-top"
-                                    alt="{{ $blog->image_alt ?? $blog->title }}"
-                                    loading="lazy"
-                                    style="height: 220px; object-fit: cover;">
+                                <a href="{{ route('blogs.show', $blog->slug) }}">
+                                    <img src="{{ asset($blog->image) }}"
+                                        class="card-img-top rounded-top"
+                                        alt="{{ $blog->image_alt ?? $blog->title }}"
+                                        loading="lazy"
+                                        style="height: 220px; object-fit: cover;">
+                                </a>
 
-                                <div class="card-body d-flex flex-column">
+                                <div class="card-body">
                                     <h5 class="fw-bold mb-2">
                                         <a href="{{ route('blogs.show', $blog->slug) }}" class="text-dark text-decoration-none">
                                             {{ Str::limit($blog->title, 80) }}
@@ -117,10 +119,6 @@
                                     <p class="text-muted mb-4">
                                         {!! Str::limit(strip_tags($blog->short_description), 130) !!}
                                     </p>
-
-                                    <a href="{{ route('blogs.show', $blog->slug) }}" class="btn btn-outline-primary btn-sm mt-auto align-self-start">
-                                        Read More
-                                    </a>
                                 </div>
                             </div>
                         </div>

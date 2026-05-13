@@ -14,6 +14,88 @@ document.addEventListener('DOMContentLoaded', () => {
         document.execCommand(cmd, false, value);
     };
 
+    const sanitizePastedHtml = (html) => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const proofingClasses = [
+            'GramE',
+            'SpellE',
+            'MsoProofingErrors',
+            'scayt-misspell-word',
+            'scayt-misspell',
+            'GINGER_SOFTWARE_mark'
+        ];
+
+        doc.body.querySelectorAll('*').forEach((el) => {
+            proofingClasses.forEach(className => el.classList.remove(className));
+
+            [...el.attributes].forEach((attr) => {
+                const name = attr.name.toLowerCase();
+                const value = attr.value.toLowerCase();
+
+                if (
+                    name.startsWith('data-gramm') ||
+                    name.startsWith('data-mce') ||
+                    name.startsWith('data-cke') ||
+                    name === 'spellcheck' ||
+                    name === 'lang' ||
+                    name === 'xml:lang' ||
+                    name === 'class' && !el.className.trim()
+                ) {
+                    el.removeAttribute(attr.name);
+                }
+
+            });
+
+            if (!el.hasAttribute('style')) return;
+
+            const style = el.style;
+            [...style].forEach((property) => {
+                if (property.startsWith('mso-')) {
+                    style.removeProperty(property);
+                }
+            });
+
+            const textDecoration = [
+                style.textDecoration,
+                style.textDecorationLine,
+                style.textDecorationStyle,
+                style.textDecorationColor,
+                style.borderBottom,
+                style.borderBottomColor
+            ].join(' ').toLowerCase();
+
+            if (/wavy|spell|grammar|red|#f00|rgb\(255,\s*0,\s*0\)|green|#008000/.test(textDecoration)) {
+                style.removeProperty('text-decoration');
+                style.removeProperty('text-decoration-line');
+                style.removeProperty('text-decoration-style');
+                style.removeProperty('text-decoration-color');
+                style.removeProperty('border-bottom');
+                style.removeProperty('border-bottom-color');
+                style.removeProperty('border-bottom-style');
+                style.removeProperty('border-bottom-width');
+            }
+
+            if (style.background && !style.backgroundColor) {
+                style.backgroundColor = style.background;
+            }
+        });
+
+        return doc.body.innerHTML;
+    };
+
+    document.addEventListener('paste', (e) => {
+        const editor = e.target.closest('.editor-area');
+        if (!editor) return;
+
+        const html = e.clipboardData?.getData('text/html');
+        const text = e.clipboardData?.getData('text/plain');
+
+        if (!html && !text) return;
+
+        e.preventDefault();
+        exec(editor, 'insertHTML', html ? sanitizePastedHtml(html) : text.replace(/\n/g, '<br>'));
+    });
+
     /* CLICK HANDLER */
     document.addEventListener('click', (e) => {
 

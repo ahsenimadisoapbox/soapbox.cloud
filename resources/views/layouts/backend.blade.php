@@ -74,6 +74,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.visitor-analytics.index') }}" class="nav-link">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span class="nav-text">Visitor Analytics</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('home') }}" class="nav-link">
                     <i class="bi bi-house"></i>
                     <span class="nav-text">Back to Homepage</span>
@@ -146,7 +152,7 @@
         });
     </script>
 
-    <script src="{{ asset('admin/js/script.js') }}"></script>
+    <script src="{{ asset('admin/js/script.js') }}?v={{ filemtime(public_path('admin/js/script.js')) }}"></script>
 
 </body>
 

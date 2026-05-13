@@ -1677,37 +1677,27 @@ body.authenticated #mainNavbar {
    Blog Details
 ===================================================== */
 
-#toc-container .card-body {
-    max-height: 70vh;
-    overflow: auto;
-}
-
-#toc-container .card-body {
-    max-height: 70vh;
-    overflow: auto;
-}
-
 #toc-container {
-    position: relative;
+    position: sticky;
+    top: 110px;
+    z-index: 10;
 }
 
-#toc-container.toc-fixed {
-    position: fixed;
-    top: 120px;
-    max-height: calc(100vh - 140px);
-    overflow-y: auto;
-}
-
-#toc-container.toc-bottom {
-    position: absolute;
-    bottom: 0;
+#toc-container .card-body {
+    max-height: calc(100vh - 150px);
+    overflow: auto;
 }
 
 #toc-container .card {
     max-width: 350px;
+    width: 100%;
 }
 
-@media (max-width:768px) {
+@media (max-width:991.98px) {
+    .blog-sidebar {
+        min-height: auto !important;
+    }
+
     .toc-wrapper {
         margin-bottom: 30px;
     }

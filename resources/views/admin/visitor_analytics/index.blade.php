@@ -7,8 +7,6 @@
        Aesthetic: Data-dense editorial dark-light hybrid
        Font: Instrument Serif + DM Sans
     ═══════════════════════════════════════ */
-        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
-
         :root {
             --ink: #0C1524;
             --ink-2: #1E2D45;
@@ -26,16 +24,10 @@
             --rose-light: #FDEAED;
             --violet: #7C3AED;
             --violet-light: #F3EEFF;
-            --ff-serif: 'Instrument Serif', Georgia, serif;
-            --ff-sans: 'DM Sans', sans-serif;
             --r: 12px;
             --r-lg: 18px;
             --shadow: 0 1px 4px rgba(12, 21, 36, .06), 0 4px 16px rgba(12, 21, 36, .08);
             --shadow-lg: 0 8px 32px rgba(12, 21, 36, .12);
-        }
-
-        body {
-            font-family: var(--ff-sans);
         }
 
         /* ── PAGE HEADER ── */
@@ -48,33 +40,22 @@
             margin-bottom: 28px;
         }
 
-        .va-title {
-            font-family: var(--ff-serif);
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--ink);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin: 0 0 5px;
-        }
-
-        .va-subtitle {
-            font-size: 13px;
-            color: var(--muted);
-            margin: 0;
-        }
-
         /* ── FILTER BAR ── */
         .va-filter-bar {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 28px;
+            padding: 16px;
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-lg);
+            box-shadow: var(--shadow);
         }
 
         .va-filter-bar .form-select,
         .va-filter-bar .form-control {
-            font-family: var(--ff-sans);
             font-size: 13px;
             border: 1.5px solid var(--border);
             border-radius: var(--r);
@@ -95,7 +76,6 @@
         .btn-filter {
             height: 38px;
             padding: 0 18px;
-            font-family: var(--ff-sans);
             font-size: 13px;
             font-weight: 600;
             border-radius: var(--r);
@@ -117,7 +97,6 @@
         .btn-pdf {
             height: 38px;
             padding: 0 16px;
-            font-family: var(--ff-sans);
             font-size: 13px;
             font-weight: 600;
             border-radius: var(--r);
@@ -194,7 +173,6 @@
         }
 
         .kpi-value {
-            font-family: var(--ff-serif);
             font-size: 34px;
             line-height: 1;
             color: var(--ink);
@@ -273,7 +251,6 @@
         }
 
         .chart-card-title {
-            font-family: var(--ff-serif);
             font-size: 16px;
             font-weight: 400;
             color: var(--ink);
@@ -332,7 +309,6 @@
         }
 
         .va-table-title {
-            font-family: var(--ff-serif);
             font-size: 16px;
             color: var(--ink);
             margin: 0;
@@ -360,7 +336,6 @@
             border: none;
             background: transparent;
             outline: none;
-            font-family: var(--ff-sans);
             font-size: 13px;
             color: var(--ink);
             width: 180px;
@@ -567,12 +542,12 @@
     {{-- ═══════════ PAGE HEADER ═══════════ --}}
     <div class="va-header" id="va-report-header">
         <div>
-            <h1 class="va-title">Visitor Analytics</h1>
-            <p class="va-subtitle">Live user tracking · page visits · devices · location signals · engagement time</p>
+            <h2>Visitor Analytics</h2>
+            <p>Live user tracking · page visits · devices · location signals · engagement time</p>
         </div>
 
-        <form method="GET" id="filterForm" class="va-filter-bar">
-            {{-- Period --}}
+        <form method="GET" id="filterForm" class="va-filter-bar w-100">
+            {{-- Period filter --}}
             <select name="days" class="form-select" style="width:140px;">
                 <option value="7" {{ $days === 7 ? 'selected' : '' }}>Last 7 days</option>
                 <option value="30" {{ $days === 30 ? 'selected' : '' }}>Last 30 days</option>
@@ -608,6 +583,8 @@
                 style="text-decoration:none;color:var(--muted);">
                 Reset
             </a>
+
+            <div style="flex: 1;"></div>
 
             <button type="button" class="btn-pdf" id="btnDownloadPdf">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -705,7 +682,7 @@
             <div class="timeline-card">
                 <div class="timeline-card-header">
                     <div>
-                        <div class="chart-card-title" style="font-family:var(--ff-serif);font-size:16px;color:var(--ink);">
+                        <div class="chart-card-title" style="font-size:16px;color:var(--ink);">
                             Daily Traffic Trend
                         </div>
                         <div style="font-size:11px;color:var(--muted);margin-top:2px;">Page views &amp; unique visitors over
@@ -808,7 +785,7 @@
 
         {{-- Top Pages inline bars --}}
         <div class="col-lg-7">
-            <div class="chart-card">
+            <div class="chart-card h-100">
                 <div class="chart-card-header">
                     <div class="chart-card-title">Top Pages by Views</div>
                     <span class="chart-card-meta">Last {{ $days }} days</span>

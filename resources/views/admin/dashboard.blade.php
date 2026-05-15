@@ -6,8 +6,6 @@
            ADMIN DASHBOARD — COMPREHENSIVE ANALYTICS
            Aesthetic: Data-dense editorial dark-light hybrid
         ═══════════════════════════════════════ */
-        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
-
         :root {
             --ink: #0C1524;
             --ink-2: #1E2D45;
@@ -33,10 +31,6 @@
             --shadow-lg: 0 8px 32px rgba(12, 21, 36, .12);
         }
 
-        body {
-            font-family: var(--ff-sans);
-        }
-
         /* ── PAGE HEADER ── */
         .dashboard-header {
             display: flex;
@@ -45,22 +39,6 @@
             gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 24px;
-        }
-
-        .dashboard-title {
-            font-family: var(--ff-serif);
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--ink);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin: 0 0 5px;
-        }
-
-        .dashboard-subtitle {
-            font-size: 13px;
-            color: var(--muted);
-            margin: 0;
         }
 
         /* ── FILTER BAR ── */
@@ -79,7 +57,6 @@
 
         .filter-bar .form-control,
         .filter-bar .form-select {
-            font-family: var(--ff-sans);
             font-size: 13px;
             border: 1.5px solid var(--border);
             border-radius: var(--r);
@@ -100,7 +77,6 @@
         .btn-preset {
             height: 38px;
             padding: 0 16px;
-            font-family: var(--ff-sans);
             font-size: 13px;
             font-weight: 600;
             border-radius: var(--r);
@@ -128,7 +104,6 @@
         .btn-action {
             height: 38px;
             padding: 0 18px;
-            font-family: var(--ff-sans);
             font-size: 13px;
             font-weight: 600;
             border-radius: var(--r);
@@ -259,7 +234,6 @@
         }
 
         .chart-title {
-            font-family: var(--ff-serif);
             font-size: 18px;
             font-weight: 400;
             color: var(--ink);
@@ -274,7 +248,6 @@
 
         .toggle-btn {
             padding: 6px 12px;
-            font-family: var(--ff-sans);
             font-size: 12px;
             font-weight: 600;
             border: 1.5px solid var(--border);
@@ -386,7 +359,6 @@
         .btn-export {
             height: 38px;
             padding: 0 16px;
-            font-family: var(--ff-sans);
             font-size: 13px;
             font-weight: 600;
             border-radius: var(--r);
@@ -424,7 +396,7 @@
         <!-- Header -->
         <div class="dashboard-header">
             <div>
-                <h1 class="dashboard-title">Dashboard</h1>
+                <h2 class="dashboard-title">Dashboard</h2>
                 <p class="dashboard-subtitle">Comprehensive business analytics & performance metrics</p>
             </div>
             <button class="btn-export" onclick="exportDashboardPDF(event)" title="Export charts to PDF">

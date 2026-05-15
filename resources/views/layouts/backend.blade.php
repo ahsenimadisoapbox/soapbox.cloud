@@ -103,8 +103,35 @@
                     <i class="bi bi-person-circle"></i> Admin
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="{{ route('migrate') }}" target="_blank">Migrate</a></li>
-                    <li><a class="dropdown-item" href="{{ route('clear-cache') }}" target="_blank">Clear Cache</a></li>
+                    {{-- Option 1: Link to the console dashboard (recommended) --}}
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.console.index') }}">
+                            System Console
+                        </a>
+                    </li>
+
+                    {{-- Option 2: Keep individual links — open the result page via a small inline form --}}
+                    <li>
+                        <form method="POST" action="{{ route('admin.console.run', 'migrate') }}" style="display:inline;"
+                            id="nav-migrate-form">
+                            @csrf
+                            <a class="dropdown-item" href="#"
+                                onclick="event.preventDefault(); document.getElementById('nav-migrate-form').submit();">
+                                Migrate
+                            </a>
+                        </form>
+                    </li>
+
+                    <li>
+                        <form method="POST" action="{{ route('admin.console.run', 'clear-cache') }}"
+                            style="display:inline;" id="nav-clear-cache-form">
+                            @csrf
+                            <a class="dropdown-item" href="#"
+                                onclick="event.preventDefault(); document.getElementById('nav-clear-cache-form').submit();">
+                                Clear Cache
+                            </a>
+                        </form>
+                    </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

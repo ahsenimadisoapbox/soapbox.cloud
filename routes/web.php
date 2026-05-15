@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Admin\SystemConsoleController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EhsAssessmentController;
 use App\Http\Controllers\DemoRequestController;
@@ -31,6 +34,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
 Route::get('/modules/{id}', [ModuleController::class, 'show'])->name('modules.show');
 Route::get('/early-adopters-program', [HomeController::class, 'eap'])->name('eap');
+Route::get('/eap', function () {
+    return redirect()->route('eap');
+});
 
 Route::get('/who-we-are', [HomeController::class, 'whoweare'])->name('whoweare');
 
@@ -49,7 +55,8 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
 Route::get('/thank-you', [ContactController::class, 'thankYou'])->name('thank.you');
 
-Auth::routes();
+Auth::routes(['register' => false]);
+Route::any('/register', fn() => redirect()->route('home'));
 
 Route::middleware('auth')->prefix('admins')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -117,23 +124,20 @@ Route::middleware('auth')->prefix('admins')->group(function () {
     ]);
 });
 
-Route::get('/migrate', function () {
-    Artisan::call('migrate');
-    return 'Migration completed';
-})->name('migrate');
+Route::prefix('admins/console')
+    ->middleware(['auth'])    // ← add your guards here
+    ->name('admin.console.')
+    ->group(function () {
 
-Route::any('/register', function () {
-    return redirect()->route('home');
-})->name('register');
+        // Dashboard — list all commands
+        Route::get('/', [SystemConsoleController::class, 'index'])
+            ->name('index');
 
-// clear cache route
-Route::get('/clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('route:clear');
-    Artisan::call('view:clear');
-    return 'Cache cleared';
-})->name('clear-cache');
+        // Run a command — POST to avoid browser back-button re-runs
+        Route::any('/run/{key}', [SystemConsoleController::class, 'run'])
+            ->name('run')
+            ->where('key', '[a-z\-]+');
+});
 
 Route::get('/test-mail', function () {
     Mail::raw('Test Email from Laravel', function ($message) {

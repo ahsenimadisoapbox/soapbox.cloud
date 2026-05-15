@@ -56,6 +56,26 @@
                         <i class="fa-solid fa-gauge"></i> Dashboard
                     </a>
 
+                    {{-- Migrate --}}
+                    <form method="POST" action="{{ route('admin.console.run', 'migrate') }}" class="d-inline"
+                        id="nav-form-migrate">
+                        @csrf
+                        <button type="button" class="btn btn-link text-white text-decoration-none p-0"
+                            onclick="navConsoleRun('migrate')">
+                            <i class="fa-solid fa-database"></i> Migrate
+                        </button>
+                    </form>
+
+                    {{-- Clear Cache --}}
+                    <form method="POST" action="{{ route('admin.console.run', 'clear-cache') }}" class="d-inline"
+                        id="nav-form-clear-cache">
+                        @csrf
+                        <button type="button" class="btn btn-link text-white text-decoration-none p-0"
+                            onclick="navConsoleRun('clear-cache')">
+                            <i class="fa-solid fa-broom"></i> Clear Cache
+                        </button>
+                    </form>
+
                     <form method="POST" action="{{ route('logout') }}" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-link text-white text-decoration-none p-0">
@@ -65,6 +85,13 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function navConsoleRun(key) {
+                if (!confirm('Run "' + key + '" command?')) return;
+                document.getElementById('nav-form-' + key)?.submit();
+            }
+        </script>
     @endauth
     <div class="toast-container position-fixed top-0 end-0 p-3 z-500">
         @if(session('success'))
@@ -207,7 +234,8 @@
     </script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('/assets/script.js') }}" defer></script>
-    <script src="{{ asset('js/visitor-tracker.js') }}?v={{ filemtime(public_path('js/visitor-tracker.js')) }}" defer></script>
+    <script src="{{ asset('js/visitor-tracker.js') }}?v={{ filemtime(public_path('js/visitor-tracker.js')) }}"
+        defer></script>
     @yield('script')
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">

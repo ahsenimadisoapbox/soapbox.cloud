@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Mail\ThankYouMail;
+use App\Models\Meta;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
@@ -12,7 +13,8 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact');
+        $meta = $this->getMeta('contact');
+        return view('contact', compact('meta'));
     }
 
     public function store(Request $request)
@@ -53,6 +55,12 @@ class ContactController extends Controller
 
     public function thankYou()
     {
-        return view('thank-you');
+        $meta = $this->getMeta('thank-you');
+        return view('thank-you', compact('meta'));
+    }
+
+    public function getMeta($page)
+    {
+        return Meta::where('page', $page)->first();
     }
 }

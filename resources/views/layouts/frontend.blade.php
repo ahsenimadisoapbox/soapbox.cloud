@@ -14,6 +14,7 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('/assets/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}">
+    @yield('style')
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCKVJB3KT0"></script>
     <script>
@@ -133,11 +134,302 @@
                     <li class="cus-nav-item me-3">
                         <a class="cus-nav-link" href="{{ route('whoweare') }}" id="nWWA">Who We Are</a>
                     </li>
-                    <li class="cus-nav-item me-3">
-                        <a class="cus-nav-link" href="{{ route('modules.index') }}" id="nM">Modules</a>
+                    <li class="cus-nav-item mega-products-dropdown position-static d-none d-lg-block my-auto me-3">
+
+                        <span class="cus-nav-link mega-products-trigger">
+
+                            Products
+
+                        </span>
+
+                        <div class="products-mega-menu">
+
+                            <div class="container max-w-1400">
+
+                                <div class="row g-0">
+
+                                    {{-- LEFT CATEGORIES --}}
+
+                                    <div class="col-md-3">
+
+                                        <div class="products-category-sidebar">
+
+                                            @foreach($productCategories as $category)
+
+                                                <div class="product-category-item {{ $loop->first ? 'active' : '' }}"
+                                                    data-target="category-{{ $category->id }}">
+
+                                                    <span>
+
+                                                        {{ $category->name }}
+
+                                                    </span>
+
+                                                </div>
+
+                                            @endforeach
+
+                                        </div>
+
+                                    </div>
+
+
+                                    {{-- RIGHT MODULES --}}
+
+                                    <div class="col-md-9">
+
+                                        <div class="products-content-wrapper">
+
+                                            @foreach($productCategories as $category)
+
+                                                <div class="products-category-content {{ $loop->first ? 'active' : '' }}"
+                                                    id="category-{{ $category->id }}">
+
+                                                    <div class="row g-4">
+
+                                                        @foreach($category->modules as $module)
+
+                                                            <div class="col-md-4">
+
+                                                                @if($module->is_live)
+
+                                                                    <a href="{{ url('/modules/' . $module->slug) }}"
+                                                                        class="product-module-card live-module">
+
+                                                                        <div
+                                                                            class="module-card-top d-flex justify-content-between px-2 py-2">
+
+                                                                            <h5 class="px-3 py-2">
+                                                                                {{ $module->name }}
+                                                                            </h5>
+
+                                                                            <div class="module-status">
+                                                                                LIVE
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </a>
+
+                                                                @else
+
+                                                                    <div class="product-module-card coming-module not-clickable">
+
+                                                                        <div
+                                                                            class="module-card-top d-flex justify-content-between px-2 py-2">
+
+                                                                            <h5 class="px-3 py-2">
+                                                                                {{ $module->name }}
+                                                                            </h5>
+
+                                                                            <div class="module-status">
+                                                                                COMING SOON
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                @endif
+
+                                                            </div>
+
+                                                        @endforeach
+
+                                                    </div>
+                                                    <div class="text-end mt-4">
+
+                                                        <a href="{{ route('modules.index') }}"
+                                                            class="btn btn-custome text-white btn-sm px-3 px-lg-4 fw-semibold">
+
+                                                            View All Products
+                                                            <i class="bi bi-arrow-right ms-2"></i>
+
+                                                        </a>
+
+                                                    </div>
+
+                                                </div>
+
+                                            @endforeach
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </li>
+                    {{-- MOBILE PRODUCTS MENU --}}
+                    <li class="d-lg-none mobile-nav-item">
+
+                        <button class="mobile-dropdown-btn" data-bs-toggle="collapse"
+                            data-bs-target="#mobileProductsMenu">
+
+                            Products
+
+                            <i class="bi bi-chevron-down"></i>
+
+                        </button>
+
+                        <div class="collapse" id="mobileProductsMenu">
+
+                            <div class="mobile-dropdown-wrapper">
+
+                                @foreach($productCategories as $category)
+
+                                    <div class="mobile-category-item">
+
+                                        <button class="mobile-category-btn" data-bs-toggle="collapse"
+                                            data-bs-target="#mobileCategory{{ $category->id }}">
+
+                                            {{ $category->name }}
+
+                                            <i class="bi bi-chevron-down"></i>
+
+                                        </button>
+
+                                        <div class="collapse" id="mobileCategory{{ $category->id }}">
+
+                                            <div class="mobile-module-wrapper">
+
+                                                @foreach($category->modules as $module)
+
+                                                    @if($module->is_live)
+
+                                                        <a href="{{ url('/modules/' . $module->slug) }}" class="mobile-module-card">
+
+                                                            <div class="mobile-module-icon">
+                                                                <i class="{{ $module->icon }}"></i>
+                                                            </div>
+
+                                                            <div>
+
+                                                                <h6>{{ $module->name }}</h6>
+
+                                                                <span>LIVE</span>
+
+                                                            </div>
+
+                                                        </a>
+
+
+                                                    @endif
+
+                                                @endforeach
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <!-- <li class="cus-nav-item dropdown mega-dropdown position-static d-none d-lg-block my-auto">
+
+                        <span class="cus-nav-link mega-trigger">
+
+                            Industries
+
+                        </span>
+
+                        <div class="mega-menu">
+
+                            <div class="container max-w-1400">
+
+                                <div class="row g-4">
+
+                                    @foreach($industriesMenu as $industry)
+
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+
+                                            <a href="{{ url('/industries/' . $industry->slug) }}"
+                                            class="industry-menu-card text-decoration-none d-block">
+
+                                                <div class="industry-menu-inner">
+
+                                                    <div class="industry-dropdown-item">
+
+                                                        <div class="industry-dropdown-icon">
+
+                                                            <i class="{{ $industry->icon }}"></i>
+
+                                                        </div>
+
+                                                        <div class="industry-dropdown-content">
+
+                                                            <h6>{{ $industry->title }}</h6>
+
+                                                            <p>{{ $industry->subtitle }}</p>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </a>
+
+                                        </div>
+
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </li>
+                     {{-- MOBILE Industries MENU --}}
+                    <li class="d-lg-none mobile-nav-item">
+
+                        <button class="mobile-dropdown-btn"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#mobileIndustriesMenu">
+
+                            Industries
+
+                            <i class="bi bi-chevron-down"></i>
+
+                        </button>
+
+                        <div class="collapse"
+                            id="mobileIndustriesMenu">
+
+                            <div class="mobile-dropdown-wrapper">
+
+                                @foreach($industriesMenu as $industry)
+
+                                    <a href="{{ url('/industries/' . $industry->slug) }}"
+                                    class="mobile-industry-card">
+
+                                        <div class="mobile-module-icon">
+                                            <i class="{{ $industry->icon }}"></i>
+                                        </div>
+
+                                        <h6>{{ $industry->title }}</h6>
+
+                                    </a>
+
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
+                    </li> -->
                     <li class="cus-nav-item me-3">
-                        <a class="cus-nav-link" href="{{ route('blogs.index') }}" id="nB">Blogs</a>
+                        <a class="cus-nav-link" href="{{ route('blogs.index') }}" id="nB">Resources</a>
                     </li>
                     <li class="cus-nav-item me-3">
                         <a class="cus-nav-link" href="{{ route('contact') }}" id="nC">Contact</a>
@@ -147,24 +439,70 @@
                             Get Early Access →
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
+
     @yield('content')
     <footer class="bg-light-navy text-light">
         <div class="container py-5">
-
-            <div class="justify-content-center text-center mb-4">
-                <a class="navbar-brand m-0" href="/">
-                    <img src="{{ asset('images/logowh.png') }}" loading="lazy" alt="logo" class="logo">
-                </a>
-                <div class="footer-tag mt-4"> Intelligent Platform for Responsible Enterprises.</div>
-                <div class="footer-tag">
-                    <a href="mailto:info@soapbox.cloud?subject=Product Enquiry" class="text-white text-decoration-none">
-                        info@soapbox.cloud
-                    </a>· Early Adopters Programme 2026
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <a class="navbar-brand m-0" href="/">
+                        <img src="{{ asset('images/logowh.png') }}" loading="lazy" alt="logo" class="logo">
+                    </a>
+                    <div class="footer-tag mt-4"> Intelligent Platform for Responsible Enterprises.</div>
+                    <div class="footer-tag">
+                        <a href="mailto:info@soapbox.cloud?subject=Product Enquiry"
+                            class="text-white text-decoration-none">
+                            info@soapbox.cloud
+                        </a>· Early Adopters Programme 2026
+                    </div>
                 </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="{{ route('whoweare') }}" class="text-white text-decoration-none">Who We Are</a>
+                        </li>
+                        <li><a href="{{ route('eap') }}" class="text-white text-decoration-none">Get Early Access</a>
+                        </li>
+                        <li><a href="{{ route('blogs.index') }}" class="text-white text-decoration-none">Resources</a>
+                        </li>
+                        <li><a href="{{ route('contact') }}" class="text-white text-decoration-none">Contact</a></li>
+                        <li><a href="{{ url('sitemap.xml') }}" class="text-white text-decoration-none">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <h5>Products</h5>
+                    <ul class="list-unstyled">
+                        @foreach($footerProducts as $product)
+                            <li>
+                                <a href="{{ route('modules.show', $product->slug) }}"
+                                    class="text-white text-decoration-none">
+                                    {{ $product->name }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!-- <div class="col-sm-6 col-md-3">
+                    <h5>Industries</h5>
+                    <ul class="list-unstyled">
+                        @foreach($industriesMenu as $industry)
+                            <li>
+                                <a href="{{ url('/industries/' . $industry->slug) }}"
+                                    class="text-white text-decoration-none">
+                                    {{ $industry->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div> -->
+
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -181,14 +519,14 @@
                             <a href="https://www.linkedin.com/company/soapboxgroup/"
                                 class="nav-link text-white fs-12"><i class="fab fa-linkedin"></i></a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="https://in.pinterest.com/soapboxsoftwaresolutions/"
                                 class="nav-link text-white fs-12"><i class="fab fa-pinterest"></i></a>
                         </li>
                         <li class="nav-item">
                             <a href="https://x.com/SoapBox_in" class="nav-link text-white fs-12"><i
                                     class="fab fa-x-twitter"></i></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -224,6 +562,55 @@
             ↑
         </button>
     </div>
+    <div class="translate-drawer-wrapper">
+
+        <!-- Edge Toggle -->
+        <button id="translateDrawerToggle" class="translate-edge-toggle">
+
+            🌐
+
+        </button>
+
+        <!-- Sliding Panel -->
+        <div id="translateDrawer" class="translate-drawer">
+
+            <div class="translate-drawer-header">
+
+                <span>Language</span>
+
+                <button id="closeTranslateDrawer">
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="translate-language-list">
+
+                <button data-lang="en">English</button>
+                <button data-lang="ar">Arabic (UAE)</button>
+
+                <button data-lang="zh-CN">
+                    Chinese (Singapore)
+                </button>
+
+                <button data-lang="ms">
+                    Malay (Singapore)
+                </button>
+
+                <button data-lang="fr">French</button>
+                <button data-lang="de">German</button>
+                <button data-lang="es">Spanish</button>
+                <button data-lang="hi">Hindi</button>
+                <button data-lang="ja">Japanese</button>
+                <button data-lang="ko">Korean</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="google_translate_element" style="display:none;"></div>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -233,7 +620,7 @@
         });
     </script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('/assets/script.js') }}" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="{{ asset('js/visitor-tracker.js') }}?v={{ filemtime(public_path('js/visitor-tracker.js')) }}"
         defer></script>
     @yield('script')
@@ -250,6 +637,104 @@
         })();
     </script>
     <!--End of Tawk.to Script-->
+    <script>
+
+        function googleTranslateElementInit() {
+
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false
+            }, 'google_translate_element');
+
+        }
+
+        function triggerGoogleTranslate(lang) {
+
+            const interval = setInterval(() => {
+
+                const select =
+                    document.querySelector(".goog-te-combo");
+
+                if (select) {
+
+                    select.value = lang;
+
+                    select.dispatchEvent(
+                        new Event('change')
+                    );
+
+                    clearInterval(interval);
+                }
+
+            }, 500);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toggleBtn =
+                document.getElementById("translateDrawerToggle");
+
+            const drawer =
+                document.getElementById("translateDrawer");
+
+            const closeBtn =
+                document.getElementById("closeTranslateDrawer");
+
+            // Open drawer
+
+            toggleBtn.addEventListener("click", function () {
+
+                drawer.classList.toggle("active");
+
+            });
+
+            // Close drawer
+
+            closeBtn.addEventListener("click", function () {
+
+                drawer.classList.remove("active");
+
+            });
+
+            // Language selection
+
+            document.querySelectorAll(
+                ".translate-language-list button"
+            ).forEach(btn => {
+
+                btn.addEventListener("click", function () {
+
+                    const lang =
+                        this.getAttribute("data-lang");
+
+                    triggerGoogleTranslate(lang);
+
+                });
+
+            });
+
+        });
+
+        /* Hide Google bar repeatedly */
+
+        setInterval(() => {
+
+            const bannerFrame =
+                document.querySelector('.goog-te-banner-frame');
+
+            if (bannerFrame) {
+
+                bannerFrame.style.display = 'none';
+
+            }
+
+            document.body.style.top = '0px';
+
+        }, 500);
+
+    </script>
+
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

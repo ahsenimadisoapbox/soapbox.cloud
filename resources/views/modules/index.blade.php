@@ -13,7 +13,7 @@
     <div class="container max-w-1000 text-center" data-aos="zoom-in">
         <div class="tag mb-2">PLATFORM MODULES</div>
         <h1 class="section-title">
-            21 Modules. One Platform.
+            EHS Software Modules — 21 Functions. One Platform.
             <span class="text-blue">Every EHS Function.</span>
         </h1>
         <h3 class="section-sub mx-auto">

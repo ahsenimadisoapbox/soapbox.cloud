@@ -1,6 +1,6 @@
 @php
 $url = url()->current();
-$title = trim($__env->yieldContent('title', 'SoapBox'));
+$title = trim($__env->yieldContent('title', 'SoapBox.cloud'));
 
 $schema = [];
 
@@ -90,7 +90,11 @@ if (request()->is('who-we-are')) {
         "@type" => "AboutPage",
         "@id"   => $url . "#about",
         "url"   => $url,
-        "name"  => "Who We Are"
+        "name"  => "Who We Are",
+        "founder" => [
+            "@type" => "Person",
+            "name"  => "Mohammed Moizuddin"
+        ]
     ];
 }
 
@@ -115,7 +119,7 @@ if (request()->is('modules')) {
 */
 if (request()->is('blogs')) {
     $schema[] = [
-        "@type" => "Blog",
+        "@type" => "Article",
         "@id"   => $url . "#blog",
         "url"   => $url,
         "name"  => "SoapBox Blogs"

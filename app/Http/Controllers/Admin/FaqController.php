@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Faq;
 use App\Models\Module;
+use App\Models\Industry;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -16,14 +17,27 @@ class FaqController extends Controller
             ->orderBy('sort_order')
             ->get()
             ->groupBy('page');
+
         return view('admin.faqs.index', compact('faqs'));
     }
 
     public function create()
     {
-        $modules = Module::orderBy('sort_order')->where('is_live', 1)->get();
-        $blogs = Blog::orderBy('id', 'DESC')->where('status', 1)->get();
-        return view('admin.faqs.create', compact('modules', 'blogs'));
+        $modules = Module::orderBy('sort_order')
+            ->where('is_live', 1)
+            ->get();
+
+        $blogs = Blog::orderBy('id', 'DESC')
+            ->where('status', 1)
+            ->get();
+
+        $industries = Industry::orderBy('title', 'ASC')->get();
+
+        return view('admin.faqs.create', compact(
+            'modules',
+            'blogs',
+            'industries'
+        ));
     }
 
     public function store(Request $request)
@@ -43,10 +57,24 @@ class FaqController extends Controller
 
     public function edit($id)
     {
-        $modules = Module::orderBy('sort_order')->where('is_live', 1)->get();
-        $blogs = Blog::orderBy('id', 'DESC')->where('status', 1)->get();
+        $modules = Module::orderBy('sort_order')
+            ->where('is_live', 1)
+            ->get();
+
+        $blogs = Blog::orderBy('id', 'DESC')
+            ->where('status', 1)
+            ->get();
+
+        $industries = Industry::orderBy('title', 'ASC')->get();
+
         $faq = Faq::findOrFail($id);
-        return view('admin.faqs.edit', compact('faq', 'modules', 'blogs'));
+
+        return view('admin.faqs.edit', compact(
+            'faq',
+            'modules',
+            'blogs',
+            'industries'
+        ));
     }
 
     public function update(Request $request, $id)
@@ -59,6 +87,7 @@ class FaqController extends Controller
         ]);
 
         $faq = Faq::findOrFail($id);
+
         $faq->update($request->all());
 
         return redirect()->route('admin.faqs.index')
@@ -68,6 +97,7 @@ class FaqController extends Controller
     public function destroy($id)
     {
         $faq = Faq::findOrFail($id);
+
         $faq->delete();
 
         return redirect()->route('admin.faqs.index')

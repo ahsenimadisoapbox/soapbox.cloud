@@ -38,6 +38,20 @@
                     {{ $blog->title }}
                 </option>
             @endforeach
+            <option class="fw-bold" disabled>
+                Industries
+            </option>
+
+            @foreach($industries as $industry)
+
+                <option value="{{ $industry->title }}"
+                    {{ (old('page', $faq->page ?? '') == $industry->title) ? 'selected' : '' }}>
+
+                    {{ $industry->title }}
+
+                </option>
+
+            @endforeach
         </select>
     </div>
 

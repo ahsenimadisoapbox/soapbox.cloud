@@ -6,6 +6,7 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Models\Meta;
 use App\Models\Faq;
+use App\Models\Popup;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,8 @@ class HomeController extends Controller
         $meta = $this->getMeta('home');
         $modules = Module::orderBy('sort_order', 'asc')->where('is_live', 1)->take(6)->get();
         $faqs = $this->getFaqs('home');
-        return view('home', compact('modules', 'meta', 'faqs'));
+        $popup = Popup::where('status', 1)->latest()->first();
+        return view('home', compact('modules', 'meta', 'faqs', 'popup'));
     }
 
     public function whoweare()
@@ -32,7 +34,7 @@ class HomeController extends Controller
 
     public function eap()
     {
-        $meta = $this->getMeta('eap');
+        $meta = $this->getMeta('early-adopters-program');
         $faqs = $this->getFaqs('eap');
         return view('EAP', compact('meta', 'faqs'));
     }

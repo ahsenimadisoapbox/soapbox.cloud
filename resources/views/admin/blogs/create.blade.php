@@ -59,6 +59,42 @@
                 <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label class="form-label">Mobile Content</label>
+
+            @include('partials.editor', [
+                'name' => 'mobile_content',
+                'id' => 'blog_mobile_content',
+                'value' => old('mobile_content'),
+                'required' => false
+            ])
+
+            @error('mobile_content')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Author
+            </label>
+
+            <input type="text"
+                name="author"
+                class="form-control"
+                value="{{ old('author', $blog->author ?? '') }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Role
+            </label>
+
+            <input type="text"
+                name="role"
+                class="form-control"
+                value="{{ old('role', $blog->role ?? '') }}">
+        </div>
 
         <div class="row">
             {{-- IMAGE --}}

@@ -1,5 +1,6 @@
 <?php 
 
+use App\Http\Controllers\Admin\PopupController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -28,6 +29,9 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AssetController;
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EhsAIController;
+use App\Http\Controllers\ThankYouController;
+use App\Http\Controllers\IndustryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -53,10 +57,24 @@ Route::get('/assets/script.js', [AssetController::class, 'js']);
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
-Route::get('/thank-you', [ContactController::class, 'thankYou'])->name('thank.you');
+
+Route::get('/industries',
+    [IndustryController::class, 'industries']);
+
+Route::get('/industries/{slug}',
+    [IndustryController::class, 'industryDetails']);
+
+Route::get('/services/{slug}',
+    [IndustryController::class, 'serviceDetails']);
 
 Auth::routes(['register' => false]);
 Route::any('/register', fn() => redirect()->route('home'));
+
+Route::get('/thank-you/{source?}', [ThankYouController::class, 'index'])
+    ->name('thank.you')
+    ->where('source', 'ehs|contact|demo|early-access');
+
+Route::post('/generate-ehs-ai-insight', [EhsAIController::class, 'generateInsight']);
 
 Route::middleware('auth')->prefix('admins')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -121,6 +139,35 @@ Route::middleware('auth')->prefix('admins')->group(function () {
         'edit' => 'admin.faqs.edit',
         'update' => 'admin.faqs.update',
         'destroy' => 'admin.faqs.destroy',
+    ]);
+
+    Route::resource('industries', \App\Http\Controllers\Admin\IndustryController::class)->names([
+        'index' => 'admin.industries.index',
+        'create' => 'admin.industries.create',
+        'store' => 'admin.industries.store',
+        'show' => 'admin.industries.show',
+        'edit' => 'admin.industries.edit',
+        'update' => 'admin.industries.update',
+        'destroy' => 'admin.industries.destroy',
+    ]);
+
+    Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class)->names([
+        'index' => 'admin.services.index',
+        'create' => 'admin.services.create',
+        'store' => 'admin.services.store',
+        'show' => 'admin.services.show',
+        'edit' => 'admin.services.edit',
+        'update' => 'admin.services.update',
+        'destroy' => 'admin.services.destroy',
+    ]);
+    Route::resource('popups', PopupController::class)->names([
+        'index' => 'admin.popups.index',
+        'create' => 'admin.popups.create',
+        'store' => 'admin.popups.store',
+        'show' => 'admin.popups.show',
+        'edit' => 'admin.popups.edit',
+        'update' => 'admin.popups.update',
+        'destroy' => 'admin.popups.destroy',
     ]);
 });
 

@@ -1,105 +1,308 @@
 @extends('layouts.frontend')
 
+@section('meta')
+@include('partials.meta', [
+    'title' => $meta->meta_title ?? 'SOAPBOX.CLOUD™ | Intelligent Platform for Responsible Enterprises',
+    'description' => $meta->meta_description ?? 'Manage compliance, safety, and risk workflows in one enterprise operating system. Soapbox Cloud helps regulated teams automate and stay audit-ready.',
+    'keywords' => $meta->meta_keywords ?? 'cloud os, regulated workflows, compliance workflow management, compliance software, audit management software, risk management software, workflow automation, regulated enterprise software, safety management software, quality management software, enterprise compliance platform, audit ready compliance, operational resilience, cloud native compliance',
+])
+@endsection
+
+@section('style')
+<style>
+  .ty-section {
+    background: #F0F2F5;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding: 48px 16px;
+  }
+
+  .ty-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.09);
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* ── top accent bar ── */
+  .ty-accent-bar { height: 4px; }
+
+  /* ── hero ── */
+  .ty-hero {
+    padding: 44px 40px 32px;
+    text-align: center;
+    background: #fafafa;
+    border-bottom: 1px solid #EEEEEE;
+  }
+
+  .ty-icon-wrap {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .ty-heading {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0b1c3d;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px;
+  }
+
+  .ty-subheading {
+    font-size: 0.95rem;
+    color: #6B7280;
+    margin: 0 0 10px;
+    line-height: 1.55;
+  }
+
+  .ty-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    margin-top: 4px;
+  }
+
+  .ty-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* ── body ── */
+  .ty-body { padding: 36px 40px; }
+
+  .ty-intro {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0 0 28px;
+    padding: 16px 18px;
+    border-radius: 10px;
+    border-left: 3px solid;
+    background: #F7F9FC;
+  }
+
+  /* ── steps ── */
+  .ty-steps-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin: 0 0 16px;
+  }
+
+  .ty-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .ty-step:last-child { margin-bottom: 0; }
+
+  .ty-step-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: #F3F4F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .ty-step-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0b1c3d;
+    margin: 0 0 2px;
+  }
+
+  .ty-step-body {
+    font-size: 0.8rem;
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── divider ── */
+  .ty-divider {
+    height: 1px;
+    background: #EEEEEE;
+    margin: 28px 0;
+  }
+
+  /* ── CTA ── */
+  .ty-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 480px) {
+    .ty-ctas { flex-direction: row; }
+  }
+
+  .ty-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.12s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ty-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .ty-btn-primary { color: #fff; }
+
+  .ty-btn-secondary {
+    background: #F3F4F6;
+    color: #374151;
+  }
+
+  /* ── footer badge ── */
+  .ty-footer-badge {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .ty-footer-badge span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .ty-hero   { padding: 32px 24px 24px; }
+    .ty-body   { padding: 28px 24px; }
+    .ty-heading { font-size: 1.4rem; }
+  }
+</style>
+@endsection
+
 @section('content')
+<section class="ty-section">
+  <div style="width:100%">
 
-    <section class="bg-light-blue py-5">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+    <div class="ty-card">
 
-                    <div class="card border-0 rounded-4 shadow text-center p-4 p-md-5">
+      {{-- Accent bar --}}
+      <div class="ty-accent-bar" style="background:{{ $config['accent'] }}"></div>
 
-                        <!-- Animated Check Icon -->
-                        <div class="mx-auto mb-4 d-flex align-items-center justify-content-center rounded-circle"
-                            style="width: 80px; height: 80px; background: rgba(34,197,94,0.1);">
-                            <i class="fa-solid fa-circle-check" style="font-size: 2.4rem; color: #22c55e;"></i>
-                        </div>
-
-                        <!-- Heading -->
-                        <h2 class="fw-bold mb-2" style="font-size: 1.75rem; letter-spacing: -0.02em;">
-                            Thank You!
-                        </h2>
-                        <p class="text-muted mb-4" style="font-size: 1rem; line-height: 1.65;">
-                            Your message has been successfully submitted.<br>
-                            We'll get back to you within <strong class="text-dark">24 hours</strong>.
-                        </p>
-
-                        <!-- Divider -->
-                        <hr class="my-4">
-
-                        <!-- What happens next -->
-                        <div class="text-start mb-4">
-                            <p class="fw-semibold mb-3"
-                                style="font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: #FF5C35;">
-                                What happens next?
-                            </p>
-                            <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                                <li class="d-flex align-items-start gap-3">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-                                        style="width:32px; height:32px; background:rgba(255,92,53,0.08); margin-top:1px;">
-                                        <i class="fa-solid fa-envelope" style="font-size:0.75rem; color:#FF5C35;"></i>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0 fw-semibold" style="font-size:0.9rem;">Confirmation email sent</p>
-                                        <p class="mb-0 text-muted" style="font-size:0.82rem;">Check your inbox for a copy of
-                                            your submission.</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-                                        style="width:32px; height:32px; background:rgba(255,92,53,0.08); margin-top:1px;">
-                                        <i class="fa-solid fa-user-tie" style="font-size:0.75rem; color:#FF5C35;"></i>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0 fw-semibold" style="font-size:0.9rem;">Our team reviews your message
-                                        </p>
-                                        <p class="mb-0 text-muted" style="font-size:0.82rem;">We read every message
-                                            carefully and personally.</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex align-items-start gap-3">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-                                        style="width:32px; height:32px; background:rgba(255,92,53,0.08); margin-top:1px;">
-                                        <i class="fa-solid fa-reply" style="font-size:0.75rem; color:#FF5C35;"></i>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0 fw-semibold" style="font-size:0.9rem;">We'll be in touch</p>
-                                        <p class="mb-0 text-muted" style="font-size:0.82rem;">Expect a reply within 1
-                                            business day.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Divider -->
-                        <hr class="my-4">
-
-                        <!-- CTA Buttons -->
-                        <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
-                            <a href="{{ url('/') }}" class="btn btn-primary btn-sm">
-                                <i class="fa-solid fa-house"></i>
-                                Back to Home
-                            </a>
-                            <a href="{{ url('/contact') }}" class="btn btn-outline-secondary btn-sm">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                Send Another Message
-                            </a>
-                        </div>
-
-                    </div>
-
-                    <!-- Response time badge -->
-                    <div class="text-center mt-4">
-                        <span class="badge rounded-pill px-3 py-2"
-                            style="background:rgba(34,197,94,0.1); color:#16a34a; font-size:0.8rem; font-weight:500; border: 1px solid rgba(34,197,94,0.2);">
-                            <i class="fa-solid fa-circle me-1" style="font-size:0.45rem; vertical-align:middle;"></i>
-                            Typically responds within 24 hours
-                        </span>
-                    </div>
-
-                </div>
-            </div>
+      {{-- Hero --}}
+      <div class="ty-hero">
+        <div class="ty-icon-wrap"
+          style="background:{{ $config['badge_bg'] }}">
+          {{ $config['icon'] }}
         </div>
-    </section>
 
+        <h1 class="ty-heading">{{ $config['heading'] }}</h1>
+        <p class="ty-subheading">{{ $config['subheading'] }}</p>
+
+        <span class="ty-badge"
+          style="background:{{ $config['badge_bg'] }};
+                 color:{{ $config['badge_color'] }};
+                 border-color:{{ $config['badge_color'] }}33">
+          <span class="ty-badge-dot"
+            style="background:{{ $config['badge_color'] }}"></span>
+          {{ $config['badge_text'] }}
+        </span>
+      </div>
+
+      {{-- Body --}}
+      <div class="ty-body">
+
+        {{-- Flash message or intro --}}
+        @if(session('success'))
+          <div class="ty-intro" style="border-color:{{ $config['accent'] }}">
+            {{ session('success') }}
+          </div>
+        @else
+          <div class="ty-intro" style="border-color:{{ $config['accent'] }}">
+            {!! $config['intro'] !!}
+          </div>
+        @endif
+
+        {{-- Steps --}}
+        <p class="ty-steps-label">What happens next</p>
+
+        @foreach($config['steps'] as $step)
+          <div class="ty-step">
+            <div class="ty-step-icon"
+              style="background:{{ $config['badge_bg'] }}">
+              {{ $step['icon'] }}
+            </div>
+            <div>
+              <p class="ty-step-title">{{ $step['title'] }}</p>
+              <p class="ty-step-body">{{ $step['body'] }}</p>
+            </div>
+          </div>
+        @endforeach
+
+        <div class="ty-divider"></div>
+
+        {{-- CTA buttons --}}
+        <div class="ty-ctas">
+          <a href="{{ $config['primary_cta']['url'] }}"
+            class="ty-btn ty-btn-primary"
+            style="background:{{ $config['accent'] }}">
+            {{ $config['primary_cta']['label'] }}
+            &rarr;
+          </a>
+          <a href="{{ $config['secondary_cta']['url'] }}"
+            class="ty-btn ty-btn-secondary">
+            {{ $config['secondary_cta']['label'] }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    {{-- Footer badge --}}
+    <div class="ty-footer-badge">
+      <span style="background:{{ $config['badge_bg'] }};
+                   color:{{ $config['badge_color'] }};
+                   border:1px solid {{ $config['badge_color'] }}33">
+        <span class="ty-badge-dot"
+          style="background:{{ $config['badge_color'] }}"></span>
+        {{ $config['badge_text'] }}
+      </span>
+    </div>
+
+  </div>
+</section>
 @endsection

@@ -31,7 +31,7 @@
       <span class="dot"></span>
       LIVE — Available Now
     </div>
-    <h1 class="section-title">{{ $module->name }}</h1>
+    <h1 class="section-title">{{ $module->name }} Software</h1>
     <h3 class="section-sub mx-auto mb-4">
       {!! $module->short_description !!}
     </h3>

@@ -10,7 +10,7 @@
 <section class="hero ">
     <div class="container text-center max-w-800">
         <div class="tag">WHO WE ARE</div>
-        <h1 class="section-title">Built by People Who Understand <span class="text-forth">What Is at Stake.</span></h1>
+        <h1 class="section-title">About SOAPBOX.CLOUD™ — Built by People Who Understand <span class="text-forth">What Is at Stake.</span></h1>
         <h3 class="section-sub my-0 mx-auto fs-16 fw-normal text-muted">SOAPBOX.CLOUD™ was built by enterprise technology leaders who spent decades inside regulated industries
             — where a missed compliance deadline is a regulatory action, a delayed incident report is a liability, and an untracked corrective action is a life at risk.
         We built what we knew was missing.</h3>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <p class="fs-12 text-muted">
-                        20+ years in regulated financial services and enterprise technology. Former IBM Partner and Asia-Pacific Head of Applications. Senior Vice President at DBS Bank. Best of IBM Award 2012. Built SOAPBOX.CLOUD™ from the conviction that safety infrastructure must match the industries it protects.                        </p>
+                        Over three decades in regulated financial services and enterprise technology. Former IBM Partner and Asia-Pacific Head of Applications. Senior Vice President at DBS Bank. Best of IBM Award 2012. Built SOAPBOX.CLOUD™ from the conviction that safety infrastructure must match the industries it protects.                        </p>
                         <a href="https://www.linkedin.com/in/mohammedmoizuddin/" class="btn btn-sm btn-third rounded-pill">
                             <i class="fa-brands fa-linkedin me-1"></i> LinkedIn →
                         </a>

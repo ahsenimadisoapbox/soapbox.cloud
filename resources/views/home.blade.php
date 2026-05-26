@@ -18,7 +18,7 @@
         <div class="col-md-6">
           <p class="hero-livebadge mb-4 text-center">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
           <h1 class="fs-18 fw-normal text-muted">
-            <span class="fw-semibold text-gradient-blue">SOAPBOX.CLOUD™</span> — The <span class="text-first fw-bold fs-18">EHS platform</span> built for operations that were never given the right tools.
+            <span class="fw-semibold text-gradient-blue">SOAPBOX.CLOUD™</span> — The <span class="text-first fw-bold fs-18">EHS software platform</span> built for operations that were never given the right tools.
           </h1>
           <div class="hero-stat mt-4" id="heroStat" data-aos="zoom-in">2,930,000</div>
           <p class="text-secondary mb-4">
@@ -28,7 +28,7 @@
             </span>
           </p>
           <h3 class="text-first fw-semibold fs-5 my-4">No spreadsheet was ever designed to prevent this.</h3>
-          <a class="btn btn-custome text-white me-2" href="#modules">See What's Live</a>
+          <a class="btn btn-custome text-white me-2" href="{{ route('modules.index') }}">See What's Live</a>
           <a href="{{ route('eap') }}#diagnostic" class="btn btn-custome1" onclick="showPage('eap')">Run your self-diagnosis →</a>
         </div>
         <div class="col-md-6 overflow-visible mt-3">
@@ -79,7 +79,7 @@
         <div class="card border-0 rounded-4 shadow border-start border-primary border-4">
           <div class="card-body p-4">
             <div class="text-third fw-semibold tag">FOUNDER</div>
-            <p class="founder-msg">"I spent 20+ years in regulated financial services watching compliance, audit, risk, and incident management live in separate systems. When something went wrong, nobody had the full picture. We built SOAPBOX.CLOUD™ to change that. One platform. Every obligation. Always connected."</p>
+            <p class="founder-msg">"I spent over three decades in regulated financial services watching compliance, audit, risk, and incident management live in separate systems. When something went wrong, nobody had the full picture. We built SOAPBOX.CLOUD™ to change that. One platform. Every obligation. Always connected."</p>
             <div class="d-flex align-items-center gap-2">
               <p class="founder-tag">
                 Mohammed Moizuddin, Founder & CEO
@@ -107,11 +107,11 @@
     <p class="tag-line text-center mt-4">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
   </div>
 </section>
-<section class="section-pad px-3 py-5">
+<section class="section-pad px-3 py-5" id="homepage-popup-trigger">
   <div class="container max-w-1000" data-aos="fade-up">
-    <div class="tag">RECOGNITION OVER PERSUASION</div>
-    <h2 class="section-title">5 Gaps Nobody Talks About</h2>
-    <h3 class="section-sub">If any of these sound familiar, SOAPBOX.CLOUD™ was built for you.</h3>
+    <!-- <div class="tag">RECOGNITION OVER PERSUASION</div> -->
+    <h2 class="section-title">Common EHS Management Challenges</h2>
+    <h3 class="section-sub">5 Gaps Nobody Talks About</h3>
     <div class="row mb-2">
       <div class="col-md-6">
         <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
@@ -196,9 +196,9 @@
 </section>
 <section class="section-pad bg-light-blue py-5" id="modules">
   <div class="container max-w-1000">
-    <div class="tag tag-green">LIVE NOW</div>
-    <h2 class="section-title">Six Modules — Operational Today</h2>
-    <h3 class="section-sub">Enterprise-grade capabilities. Ready from day one.</h3>
+    <!-- <div class="tag tag-green">LIVE NOW</div> -->
+    <h2 class="section-title">EHS Software Modules — Live Today</h2>
+    <h3 class="section-sub">Six Modules — Operational Today</h3>
     <div class="row">
       @foreach ($modules as $module)
       <div class="col-md-6 mb-4">
@@ -363,4 +363,29 @@
     </div>
   </div>
 </section>
+
+@if($popup)
+<div class="custom-popup-overlay" id="homepagePopup">
+    <div class="custom-popup-box">
+
+        <button class="popup-close-btn" id="closePopup">
+            ×
+        </button>
+
+        @if($popup->link)
+            <a href="{{ $popup->link }}">
+        @endif
+
+        @if($popup->image)
+            <img src="{{ asset($popup->image) }}"
+                 alt="{{ $popup->title }}"
+                 class="popup-image">
+        @endif
+        @if($popup->link)
+            </a>
+        @endif
+
+    </div>
+</div>
+@endif
 @endsection

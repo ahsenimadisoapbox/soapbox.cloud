@@ -51,6 +51,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.popups.index') }}" class="nav-link">
+                    <i class="fas fa-image"></i>
+                    <span class="nav-text">Popups</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.categories.index') }}" class="nav-link">
                     <i class="bi bi-list"></i>
                     <span class="nav-text">Categories</span>
@@ -60,6 +66,19 @@
                 <a href="{{ route('admin.modules.index') }}" class="nav-link">
                     <i class="bi bi-folder"></i>
                     <span class="nav-text">Modules</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.industries.index') }}" class="nav-link">
+                    <i class="bi bi-buildings"></i>
+                    <span class="nav-text">Industries</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.services.index') }}" class="nav-link">
+                    <i class="bi bi-briefcase"></i>
+                    <span class="nav-text">Services</span>
                 </a>
             </li>
             <li class="nav-item">

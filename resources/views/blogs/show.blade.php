@@ -60,8 +60,15 @@
                     alt="{{ $blog->image_alt ?? $blog->title }}" loading="lazy">
             @endif
 
-            <div class="blog-content">
+
+            {{-- Desktop --}}
+            <div class="blog-content d-none d-md-block">
                 {!! $blog->content !!}
+            </div>
+
+            {{-- Mobile --}}
+            <div class="blog-content d-block d-md-none">
+                {!! !empty($blog->mobile_content) ? $blog->mobile_content : $blog->content !!}
             </div>
 
         </div>
@@ -72,12 +79,12 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="post-icon-box">
-                                <p>ST</p>
+                                <p>{{ $blog->author_initials }}</p>
                             </div>
                         </div>
                         <div class="col-9 my-auto">
-                            <h5 class="fw-bold mb-0">Soapbox.Cloud Team</h5>
-                            <p class="text-muted mb-0">Editorial Team</p>
+                            <h5 class="fw-bold mb-0">{{ $blog->author ?? 'Soapbox Cloud Team' }}</h5>
+                            <p class="text-muted mb-0">{{ $blog->role ?? 'Editorial Team' }}</p>
                         </div>
                     </div>
                 </div>

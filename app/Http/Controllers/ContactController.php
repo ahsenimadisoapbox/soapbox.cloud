@@ -28,29 +28,29 @@ class ContactController extends Controller
             'country' => 'nullable|string|max:255',
             'hear_about' => 'nullable|string|max:255',
             'message' => 'required',
-            'g-recaptcha-response' => 'required',
+            // 'g-recaptcha-response' => 'required',
         ]);
 
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret' => env('NOCAPTCHA_SECRET'),
-            'response' => $request->input('g-recaptcha-response'),
-            'remoteip' => $request->ip(),
-        ]);
+        // $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        //     'secret' => env('NOCAPTCHA_SECRET'),
+        //     'response' => $request->input('g-recaptcha-response'),
+        //     'remoteip' => $request->ip(),
+        // ]);
 
-        if (!data_get($response->json(), 'success')) {
-            return back()
-                ->withErrors(['g-recaptcha-response' => 'Captcha verification failed'])
-                ->withInput();
-        }
+        // if (!data_get($response->json(), 'success')) {
+        //     return back()
+        //         ->withErrors(['g-recaptcha-response' => 'Captcha verification failed'])
+        //         ->withInput();
+        // }
 
-        unset($data['g-recaptcha-response']);
+        // unset($data['g-recaptcha-response']);
 
         $contact = Contact::create($data);
 
         // Send Thank You Email
         Mail::to($contact->email)->send(new ThankYouMail($contact));
 
-        return redirect()->route('thank.you');
+        return redirect()->route('thank.you', ['source' => 'contact']);
     }
 
     public function thankYou()

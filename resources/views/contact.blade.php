@@ -164,12 +164,12 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         {!! NoCaptcha::display() !!}
                                         @error('g-recaptcha-response')
                                             <div class="text-danger small mt-2">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> -->
 
                                     <!-- Submit -->
                                     <div class="col-12">
@@ -188,6 +188,6 @@
     </div>
 @endsection
 
-@section('script')
+<!-- @section('script')
     {!! NoCaptcha::renderJs() !!}
-@endsection
+@endsection -->

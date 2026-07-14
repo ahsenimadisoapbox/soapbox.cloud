@@ -1124,6 +1124,7 @@ body {
 
 .text-gradient-blue {
     background: linear-gradient(90deg, #0D2B4E, #1e63ac);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -3274,6 +3275,7 @@ h2.section-title {
     font-weight: 900;
     background: linear-gradient(90deg, #0D2B4E, #1e63ac);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1;
     /* margin-top: 40px; */
@@ -8507,6 +8509,7 @@ body.modal-open {
 .home-hero .hero-stat,
 .home-text-gradient-blue {
     background: linear-gradient(90deg, var(--sixth), var(--seventh));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

@@ -26,6 +26,13 @@
                 <label>Alt Text</label>
                 <input type="text" name="alt" class="form-control" value="{{ old('alt') }}">
             </div>
+            <div class="mb-3">
+                <label>Redirect URL</label>
+                <input type="url"
+                    name="redirect_url"
+                    class="form-control"
+                    placeholder="https://example.com">
+            </div>
 
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>

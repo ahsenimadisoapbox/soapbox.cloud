@@ -1,11 +1,4 @@
 @extends('layouts.frontend')
-@section('meta')
-@include('partials.meta', [
-    'title' => $meta->meta_title ?? 'Early Adopters Program for Soapbox Cloud | Join Now',
-    'description' => $meta->meta_description ?? 'Get first access to Soapbox enterprise cloud platform for compliance, safety, quality, and governance. Join the Early Adopters Program.',
-    'keywords' => $meta->meta_keywords ?? 'cloud os, regulated workflows, compliance workflow management, compliance software, audit management software, risk management software, workflow automation, regulated enterprise software, safety management software, quality management software, enterprise compliance platform, audit ready compliance, operational resilience, cloud native compliance',
-])
-@endsection
 @section('content')
     <div class="bg-light-blue py-5">
         <div class="container max-w-1200 mx-auto">
@@ -26,8 +19,8 @@
                                     </div>
                                     <div>
                                         <h6 class="fw-semibold mb-1">Email us</h6>
-                                        <p class="text-muted mb-0" style="font-size: 0.9rem;">
-                                            hello@soapbox.cloud
+                                        <p class="text-muted mb-0 contact-subtext">
+                                            info@soapbox.cloud
                                         </p>
                                     </div>
                                 </div>
@@ -44,7 +37,7 @@
                                     <div>
                                         <h6 class="fw-semibold mb-1">Business hours</h6>
                                         <p class="text-muted mb-0" style="font-size: 0.9rem;">
-                                            Mon – Fri, 9am – 6pm EST
+                                            Mon – Fri, 9am – 6pm IST
                                         </p>
                                     </div>
                                 </div>
@@ -164,12 +157,12 @@
                                         @enderror
                                     </div>
 
-                                    <!-- <div class="col-12">
+                                    <div class="col-12">
                                         {!! NoCaptcha::display() !!}
                                         @error('g-recaptcha-response')
                                             <div class="text-danger small mt-2">{{ $message }}</div>
                                         @enderror
-                                    </div> -->
+                                    </div>
 
                                     <!-- Submit -->
                                     <div class="col-12">
@@ -188,6 +181,6 @@
     </div>
 @endsection
 
-<!-- @section('script')
+@section('script')
     {!! NoCaptcha::renderJs() !!}
-@endsection -->
+@endsection

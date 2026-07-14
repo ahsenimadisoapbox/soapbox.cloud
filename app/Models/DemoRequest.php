@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class DemoRequest extends Model
 {
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'full_name',
         'email',
-        'phone',
-        'company',
-        'country',
+        'company_name',
         'industry',
-        'role',
-        'challenge',
-        'source',
+        'primary_interest',
+        'notes',
+        'status'
     ];
 }

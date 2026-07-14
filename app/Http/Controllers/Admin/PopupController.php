@@ -12,7 +12,7 @@ class PopupController extends Controller
 {
     public function index()
     {
-        $popups = Popup::latest()->paginate(10);
+        $popups = Popup::latest()->get();
 
         return view('admin.popups.index', compact('popups'));
     }

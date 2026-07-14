@@ -9,22 +9,26 @@
 @endsection
  
 @section('content')
-<section class="hero">
-    <div class="container max-w-1000 text-center" data-aos="zoom-in">
-        <div class="tag mb-2">PLATFORM MODULES</div>
-        <h1 class="section-title">
-            EHS Software Modules — 21 Functions. One Platform.
-            <span class="text-blue">Every EHS Function.</span>
-        </h1>
-        <h3 class="section-sub mx-auto">
-            Six modules live today. Fifteen more on the roadmap. All connected. All included. No add-ons.
-        </h3>
-        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-            <a href="{{ route('eap') }}#how-it-works" class="btn btn-custome text-white" id="scrollToDiagnostic">
-                Run your self-diagnosis
-                <span class="ms-2">&rarr;</span>
-            </a>
+<section class="hero product-hero">
+    <div class="container" data-aos="zoom-in">
+        <div class="row col-lg-9 col-xl-8">
+            <div class="hero-livebadge mb-2">PLATFORM MODULES</div>
+            <h1 class="section-title text-white">
+                EHS Software Modules — All Functions. One Platform.
+                <span class="text-green">Every EHS Function.</span>
+            </h1>
+            <h3 class="section-sub text-white mx-auto">
+                All connected. All included. No add-ons.
+            </h3>
+            <div class="d-flex flex-column flex-sm-row gap-3">
+                <a href="{{ route('eap') }}#how-it-works" class="btn btn-custome text-white" id="scrollToDiagnostic">
+                    Take the 30-sec EHS Check-diagnosis
+                    <span class="ms-2">&rarr;</span>
+                </a>
+            </div>
+
         </div>
+        
     </div>
 </section>
  

@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\LegalPageController;
 use App\Http\Controllers\Admin\MediaController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Admin\BlogController as AdminBlog;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\VisitorAnalyticsController;
 use App\Http\Controllers\AdminDashboardController;
@@ -30,13 +31,19 @@ use App\Http\Controllers\AssetController;
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EhsAIController;
+use App\Http\Controllers\EHSAIModuleController;
 use App\Http\Controllers\ThankYouController;
 use App\Http\Controllers\IndustryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sample', [HomeController::class, 'sample'])->name('sample');
 
-Route::get('/modules', [ModuleController::class, 'index'])->name('modules.index');
-Route::get('/modules/{id}', [ModuleController::class, 'show'])->name('modules.show');
+Route::get('/solutions', [ModuleController::class, 'index'])->name('modules.index');
+Route::get('/solutions/{id}', [ModuleController::class, 'show'])->name('modules.show');
+Route::get(
+    '/ehs-ai/{slug}',
+    [EHSAIModuleController::class, 'show']
+)->name('ehs-ai-module.show');
 Route::get('/early-adopters-program', [HomeController::class, 'eap'])->name('eap');
 Route::get('/eap', function () {
     return redirect()->route('eap');
@@ -45,7 +52,7 @@ Route::get('/eap', function () {
 Route::get('/who-we-are', [HomeController::class, 'whoweare'])->name('whoweare');
 
 Route::post('/ehs-assessment', [EhsAssessmentController::class, 'store'])->name('ehs-assessment-store');
-Route::post('/demo-request', [DemoRequestController::class, 'store'])->name('demo.store');
+Route::post('/demo-request', [DemoRequestController::class, 'store'])->name('demo.request.store');
 
 Route::get('/legal/{slug}', [LegalController::class, 'show'])->name('legal.show');
 
@@ -59,10 +66,18 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
 
 Route::get('/industries',
-    [IndustryController::class, 'industries']);
+    [IndustryController::class, 'industries'])->name('industries.index');
+
+Route::get('/platform', function () {
+    return view('platform');
+})->name('platform');
+Route::get(
+    '/ai-assistance',
+    [EHSAIModuleController::class, 'index']
+)->name('ai');
 
 Route::get('/industries/{slug}',
-    [IndustryController::class, 'industryDetails']);
+    [IndustryController::class, 'industryDetails'])->name('industry-details');
 
 Route::get('/services/{slug}',
     [IndustryController::class, 'serviceDetails']);
@@ -80,6 +95,17 @@ Route::middleware('auth')->prefix('admins')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard/metrics', [AdminDashboardController::class, 'getMetrics'])->name('admin.dashboard.metrics');
     Route::get('/demo', [DemoController::class, 'index'])->name('admin.demo.index');
+
+
+        Route::get(
+            '/demo/{id}',
+            [DemoController::class, 'show']
+        )->name('admin.demo.show');
+
+        Route::patch(
+            '/demo/{id}/status',
+            [DemoController::class, 'updateStatus']
+        )->name('admin.demo.status');
     Route::get('/visitor-analytics', [VisitorAnalyticsController::class, 'index'])->name('admin.visitor-analytics.index');
     Route::get('/ehs-assessments', [AdminEhsAssessmentController::class, 'index'])->name('admin.ehs_assessments.index');
     Route::get('/assessments/{id}', [AdminEhsAssessmentController::class, 'show'])->name('admin.ehs_assessments.show');
@@ -169,6 +195,24 @@ Route::middleware('auth')->prefix('admins')->group(function () {
         'update' => 'admin.popups.update',
         'destroy' => 'admin.popups.destroy',
     ]);
+    Route::get('/media', [MediaController::class, 'index'])
+    ->name('admin.media.index');
+
+Route::get('/media/create', [MediaController::class, 'create'])
+    ->name('admin.media.create');
+
+Route::post('/media', [MediaController::class, 'store'])
+    ->name('admin.media.store');
+
+Route::delete('/media/{id}', [MediaController::class, 'destroy'])
+    ->name('admin.media.destroy');
+
+    Route::resource(
+    'ehs-ai-modules',
+    App\Http\Controllers\Admin\EhsAiModuleController::class
+);
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{id}', [AdminContactController::class, 'show'])->name('admin.contacts.show');
 });
 
 Route::prefix('admins/console')

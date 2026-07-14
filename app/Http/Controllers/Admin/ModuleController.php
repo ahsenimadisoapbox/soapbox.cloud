@@ -13,7 +13,7 @@ class ModuleController extends Controller
 {
     public function index()
     {
-        $modules = Module::orderBy('sort_order', 'asc')->with('category')->paginate(10);
+        $modules = Module::orderBy('sort_order', 'asc')->with('category')->get();
         return view('admin.modules.index', compact('modules'));
     }
 
@@ -44,6 +44,25 @@ class ModuleController extends Controller
                 $image->move(public_path('uploads/modules'), $imageName);
 
                 $data['image'] = 'uploads/modules/' . $imageName;
+            }
+            if ($request->hasFile('banner_image')) {
+
+                $image = $request->file('banner_image');
+
+                $imageName =
+                    time() .
+                    '-' .
+                    Str::slug($request->name) .
+                    '-banner.' .
+                    $image->getClientOriginalExtension();
+
+                $image->move(
+                    public_path('uploads/modules'),
+                    $imageName
+                );
+
+                $data['banner_image'] =
+                    'uploads/modules/' . $imageName;
             }
 
             $module = Module::create($data);
@@ -104,6 +123,16 @@ class ModuleController extends Controller
             $imageName = time() . '_' . $request->image->getClientOriginalName();
             $request->image->move(public_path('uploads/modules'), $imageName);
             $module->update(['image' => 'uploads/modules/' . $imageName]);
+        }
+        if ($request->hasFile('banner_image')) {
+
+            if ($module->banner_image && file_exists(public_path($module->banner_image))) {
+                unlink(public_path($module->banner_image));
+            }
+
+            $banner_imageName = time() . '_' . $request->banner_image->getClientOriginalName();
+            $request->banner_image->move(public_path('uploads/modules'), $banner_imageName);
+            $module->update(['banner_image' => 'uploads/modules/' . $banner_imageName]);
         }
 
         // ===============================
@@ -198,11 +227,23 @@ class ModuleController extends Controller
         if ($request->has('measurable')) {
             $module->measurables()->delete();
 
-            foreach ($request->measurable as $item) {
+            foreach ($request->measurables as $item) {
                 if (!empty($item['name'])) {
                     $module->measurables()->create([
                         'name' => $item['name'],
                         'description' => $item['description'] ?? null,
+                    ]);
+                }
+            }
+        }
+        if ($request->has('frameworks')) {
+ 
+            $module->frameworks()->delete();
+ 
+            foreach ($request->frameworks as $item) {
+                if (!empty($item['name'])) {
+                    $module->frameworks()->create([
+                        'name' => $item['name'],
                     ]);
                 }
             }
@@ -237,6 +278,7 @@ class ModuleController extends Controller
             'short_description' => 'nullable|string',
             'description' => 'nullable|string',
             'image' => 'nullable|image',
+            'banner_image' => 'nullable|image',
             'icon' => 'nullable|string',
             // 'category' => 'nullable|string',
             'challenger_heading' => 'nullable|string',
@@ -249,7 +291,7 @@ class ModuleController extends Controller
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
-            'solutions.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'solutions.*.image' => 'nullable|image',
         ]);
     }
 
@@ -283,7 +325,7 @@ class ModuleController extends Controller
         $this->saveSimple($module, $request->uses, 'uses');
         $this->saveSimple($module, $request->measurables, 'measurables');
         $this->saveFrameworks($module, $request->frameworks);
-        $this->saveSolutions($module, $request->solutions);
+        $this->saveSolutions($module, $request->solutions, $request);
     }
 
     private function updateRelations($module, $request)

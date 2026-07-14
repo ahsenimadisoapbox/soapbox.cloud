@@ -28,6 +28,7 @@
 @php
     $url = urlencode(url()->current());
     $title = urlencode($blog->title);
+    $author = urlencode($blog->author ?? 'Soapbox Cloud Team');
 @endphp
 <div class="container pt-5 pb-5">
     <div class="d-none d-lg-flex justify-content-between align-items-center gap-3 mb-4">
@@ -85,6 +86,12 @@
                         <div class="col-9 my-auto">
                             <h5 class="fw-bold mb-0">{{ $blog->author ?? 'Soapbox Cloud Team' }}</h5>
                             <p class="text-muted mb-0">{{ $blog->role ?? 'Editorial Team' }}</p>
+
+                            @if ($blog->linkedin)
+                                <a href="{{ $blog->linkedin }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-third rounded-pill mt-2">
+                                    <i class="fa-brands fa-linkedin me-1"></i> LinkedIn →
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -94,25 +101,25 @@
                     <h5 class="card-title mb-3">Share this article</h5>
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank"
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank" rel="noopener noreferrer"
                                 class="nav-link text-dark ps-0 pe-4">
                                 <i class="fab fa-facebook-f fa-2x"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://api.whatsapp.com/send?text={{ $title }}%0A%0A{{ $url }}" target="_blank"
+                            <a href="https://api.whatsapp.com/send?text={{ $title }}%0ABy%20{{ $author }}%0A%0A{{ $url }}" target="_blank" rel="noopener noreferrer"
                                 class="nav-link text-dark ps-0 pe-4">
                                 <i class="fab fa-whatsapp fa-2x"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://twitter.com/intent/tweet?text={{ $title }}%0A%0A&url={{ $url }}"
+                            <a href="https://twitter.com/intent/tweet?text={{ $title }}%20by%20{{ $author }}&url={{ $url }}"
                                 target="_blank" class="nav-link text-dark ps-0 pe-4">
                                 <i class="fab fa-twitter fa-2x"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}" target="_blank"
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}" target="_blank" rel="noopener noreferrer"
                                 class="nav-link text-dark ps-0 pe-4">
                                 <i class="fab fa-linkedin-in fa-2x"></i>
                             </a>
@@ -258,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const link = document.createElement("a");
         link.href = "#" + id;
-        link.textContent = heading.innerText;
+        link.textContent = (index + 1) + ". " + heading.innerText;
         link.className = "text-decoration-none text-dark";
 
         link.addEventListener("click", function (e) {

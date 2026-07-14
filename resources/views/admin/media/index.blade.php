@@ -36,6 +36,15 @@
                         <small class="text-muted text-truncate d-block mb-2">
                             {{ $item->alt }}
                         </small>
+                        @if($item->redirect_url)
+                            <small class="d-block mt-2">
+                                <strong>Link:</strong>
+                                <a href="{{ $item->redirect_url }}"
+                                target="_blank">
+                                    View URL
+                                </a>
+                            </small>
+                        @endif
                         <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this media?');">
                             @csrf
                             @method('DELETE')

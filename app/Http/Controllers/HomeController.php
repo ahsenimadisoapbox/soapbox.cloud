@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Models\Meta;
@@ -19,10 +20,13 @@ class HomeController extends Controller
     public function index()
     {
         $meta = $this->getMeta('home');
-        $modules = Module::orderBy('sort_order', 'asc')->where('is_live', 1)->take(6)->get();
+        $modules = Module::orderBy('sort_order', 'asc')->where('is_live', 1)->take(10)->get();
         $faqs = $this->getFaqs('home');
         $popup = Popup::where('status', 1)->latest()->first();
-        return view('home', compact('modules', 'meta', 'faqs', 'popup'));
+        $categories = Category::with(['modules' => function ($query) {
+            $query->orderBy('sort_order', 'asc');
+        }])->orderBy('sort_order', 'asc')->get();
+        return view('home', compact('modules', 'meta', 'faqs', 'popup','categories'));
     }
 
     public function whoweare()
@@ -47,5 +51,10 @@ class HomeController extends Controller
     public function getFaqs($page)
     {
         return Faq::orderBy('sort_order', 'asc')->where('page', $page)->get();
+    }
+
+    public function sample() {
+        $modules = Module::orderBy('sort_order', 'asc')->where('is_live', 1)->take(10)->get();
+        return view('sample', compact('modules'));
     }
 }

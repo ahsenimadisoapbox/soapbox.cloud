@@ -14,6 +14,7 @@ class Blog extends Model
         'mobile_content',
         'author',
         'role',
+        'linkedin',
         'image',
         'image_alt',
         'meta_title',

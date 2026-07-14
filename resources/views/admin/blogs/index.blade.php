@@ -54,6 +54,5 @@
         </tbody>
     </table>
 
-    {{ $blogs->links() }}
 </div>
 @endsection

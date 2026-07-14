@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::orderBy('id', 'DESC')->paginate(10);
+        $blogs = Blog::orderBy('id', 'DESC')->get();
         return view('admin.blogs.index', compact('blogs'));
     }
 
@@ -30,6 +30,7 @@ class BlogController extends Controller
             'mobile_content' => 'nullable',
             'author' => 'nullable|max:255',
             'role' => 'nullable|max:255',
+            'linkedin' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'status' => 'required|boolean',
             'meta_title' => 'nullable|max:255',
@@ -69,6 +70,7 @@ class BlogController extends Controller
             'mobile_content' => 'nullable',
             'author' => 'nullable|max:255',
             'role' => 'nullable|max:255',
+            'linkedin' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'status' => 'required|boolean',
             'meta_title' => 'nullable|max:255',

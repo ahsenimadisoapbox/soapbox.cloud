@@ -44,6 +44,7 @@ window.addEventListener('load', () => {
 
 document.addEventListener("DOMContentLoaded", function() {
 
+
     const counters = document.querySelectorAll('.counter');
 
     const animateCounter = (counter) => {
@@ -115,10 +116,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* for questionaire*/
 
-console.log("EHS questionnaire loaded");
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM loaded");
+
 
     const totalSteps = document.querySelectorAll(".form-section").length || 6;
     let currentStep = 1;
@@ -301,7 +301,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function initSingleSelects() {
         const singleDropdowns = document.querySelectorAll(".custom-dropdown.single-select");
 
-        console.log("single-select found:", singleDropdowns.length);
 
         singleDropdowns.forEach(dropdown => {
             const trigger = dropdown.querySelector(".dropdown-select");
@@ -349,7 +348,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function initMultiSelects() {
         const multiDropdowns = document.querySelectorAll(".custom-dropdown.multi-select");
 
-        console.log("multi-select found:", multiDropdowns.length);
 
         multiDropdowns.forEach(dropdown => {
             const trigger = dropdown.querySelector(".dropdown-select");
@@ -563,7 +561,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const offset = circumference - (scrollPercent * circumference);
         progressCircle.style.strokeDashoffset = offset;
 
-        /* 🔥 SHOW only when user scrolls */
+
         if (scrollTop > 10) {
             progressCircle.style.opacity = 1;
         } else {
@@ -575,9 +573,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const categoryItems = document.querySelectorAll('.product-category-item');
+    const categoryItems =
+        document.querySelectorAll('.product-category-item');
 
-    const categoryContents = document.querySelectorAll('.products-category-content');
+    const categoryContents =
+        document.querySelectorAll('.products-category-content');
 
     categoryItems.forEach(item => {
 
@@ -586,11 +586,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
 
-            const category = e.currentTarget;
+            const category =
+                e.currentTarget;
 
-            const target = category.getAttribute('data-target');
+            const target =
+                category.getAttribute('data-target');
 
-            console.log('CLICKED:', target);
 
             // remove active from sidebar
             categoryItems.forEach(i => {
@@ -609,7 +610,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const activeContent =
                 document.getElementById(target);
 
-            console.log(activeContent);
 
             if (activeContent) {
                 activeContent.classList.add('active');
@@ -682,6 +682,295 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (e.target === popup) {
             popup.style.display = "none";
+        }
+
+    });
+
+});
+
+// document.addEventListener("DOMContentLoaded", function() {
+
+//     document.querySelectorAll('.industry2-ai-video').forEach(video => {
+
+//         video.addEventListener('mouseenter', () => {
+//             video.play();
+//         });
+
+//         video.addEventListener('mouseleave', () => {
+//             video.pause();
+//             video.currentTime = 0;
+//         });
+
+//     });
+// });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    document.getElementById('submitDemoRequest').addEventListener('click', function() {
+
+        const button = this;
+        const form = document.getElementById('demoRequestForm');
+        const errorBox = document.getElementById('demoFormError');
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        button.disabled = true;
+        button.innerHTML = 'Submitting...';
+
+        let formData = new FormData(form);
+
+        fetch("/demo-request", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                    "Accept": "application/json"
+                },
+                body: formData
+            })
+            .then(async response => {
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw data;
+                }
+
+                return data;
+            })
+            .then(data => {
+
+                if (data.success) {
+
+                    window.location.href = data.redirect_url;
+
+                }
+
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                errorBox.classList.remove('d-none');
+
+                if (error.message) {
+
+                    errorBox.innerHTML = error.message;
+
+                } else {
+
+                    errorBox.innerHTML =
+                        'Something went wrong. Please try again.';
+
+                }
+
+            })
+            .finally(() => {
+
+                button.disabled = false;
+                button.innerHTML = 'Continue to Booking';
+
+            });
+
+    });
+
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const modal = document.getElementById('aiDemoModal');
+    const video = document.getElementById('demoVideo');
+    const heroVideo = document.getElementById('heroDemoVideo');
+
+    if (heroVideo) {
+        heroVideo.addEventListener('click', function() {
+
+            const demoModal = new bootstrap.Modal(
+                document.getElementById('aiDemoModal')
+            );
+
+            demoModal.show();
+            video.playbackRate = 2.0; // 2x speed
+
+        });
+
+    }
+    if (modal) {
+
+        modal.addEventListener('shown.bs.modal', function() {
+
+            video.currentTime = 0;
+            video.play();
+
+        });
+
+        modal.addEventListener('hidden.bs.modal', function() {
+
+            video.pause();
+            video.currentTime = 0;
+
+        });
+    }
+
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const track = document.querySelector('.ai-module-track');
+    const cards = document.querySelectorAll('.ai-module-card');
+
+    if (!track || cards.length === 0) return;
+
+    let currentIndex = 0;
+
+    const cardWidth =
+        cards[0].offsetWidth + 24;
+
+    const nextBtn = document.querySelector('.ai-module-next');
+    const prevBtn = document.querySelector('.ai-module-prev');
+
+    if (nextBtn) {
+
+        nextBtn.addEventListener('click', () => {
+
+            const maxIndex = cards.length - 3;
+
+            currentIndex = Math.min(
+                currentIndex + 1,
+                maxIndex
+            );
+
+            track.style.transform =
+                `translateX(-${currentIndex * cardWidth}px)`;
+
+        });
+
+    }
+
+    if (prevBtn) {
+
+        prevBtn.addEventListener('click', () => {
+
+            currentIndex = Math.max(
+                currentIndex - 1,
+                0
+            );
+
+            track.style.transform =
+                `translateX(-${currentIndex * cardWidth}px)`;
+
+        });
+
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const trigger =
+        document.getElementById('aiDemoTriggerRCA');
+
+    const modal =
+        document.getElementById('aiDemoModalRCA');
+
+    const video =
+        document.getElementById('aiDemoVideoRCA');
+
+    if (trigger) {
+
+        trigger.addEventListener('click', function() {
+
+            const demoModal =
+                new bootstrap.Modal(modal);
+
+            demoModal.show();
+
+        });
+
+    }
+    if (modal) {
+
+
+        modal.addEventListener(
+            'shown.bs.modal',
+            function() {
+
+                video.currentTime = 0;
+
+                video.play();
+
+            }
+        );
+
+        modal.addEventListener(
+            'hidden.bs.modal',
+            function() {
+
+                video.pause();
+
+                video.currentTime = 0;
+
+            }
+        );
+    }
+
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    new Swiper('.industry-operations-swiper', {
+
+        slidesPerView: 1,
+
+        spaceBetween: 20,
+
+        grabCursor: true,
+
+        loop: true,
+
+        navigation: {
+            nextEl: '.industry-next-btn',
+            prevEl: '.industry-prev-btn'
+        },
+
+        breakpoints: {
+
+            768: {
+                slidesPerView: 1
+            },
+
+            1200: {
+                slidesPerView: 1
+            }
+        }
+
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const btn = document.getElementById('aiWhyToggle');
+    const text = document.getElementById('aiWhyText');
+
+    if (!btn || !text) return;
+
+    btn.addEventListener('click', function() {
+
+        if (text.classList.contains('collapsed')) {
+            text.classList.remove('collapsed');
+            text.classList.add('expanded');
+            btn.innerHTML = 'Show Less ↑';
+        } else {
+            text.classList.remove('expanded');
+            text.classList.add('collapsed');
+            btn.innerHTML = 'Learn More ↓';
         }
 
     });

@@ -90,12 +90,7 @@
                     <td style="padding:5px 0;color:#0b1c3d;font-size:13px;font-weight:600;">{{ $data['industry'] }}</td>
                   </tr>
                   @endif
-                  @if(!empty($data['employees']))
-                  <tr>
-                    <td style="padding:5px 0;color:#5580A6;font-size:13px;">Employees</td>
-                    <td style="padding:5px 0;color:#0b1c3d;font-size:13px;font-weight:600;">{{ $data['employees'] }}</td>
-                  </tr>
-                  @endif
+
                 </table>
               </td>
             </tr>

@@ -41,6 +41,15 @@ body {
     display: none;
 }
 
+.sidebar-heading {
+    padding: 18px 26px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9ca3af;
+}
+
 .main-content {
     margin-left: 250px;
     transition: all 0.3s ease;
@@ -105,7 +114,9 @@ body {
     outline: none;
 }
 
+
 /* Media */
+
 .media-wrapper {
     display: inline-block;
     position: relative;
@@ -125,7 +136,9 @@ body {
     display: block;
 }
 
+
 /* Video Responsive Wrapper */
+
 .video-wrapper .video-inner {
     position: relative;
     width: 100%;
@@ -152,7 +165,9 @@ body {
     border-radius: 50%;
 }
 
+
 /* Columns */
+
 .editor-columns {
     display: flex;
     gap: 15px;
@@ -170,7 +185,6 @@ body {
     .editor-columns {
         flex-direction: column;
     }
-
     .media-wrapper {
         width: 100% !important;
         height: auto !important;

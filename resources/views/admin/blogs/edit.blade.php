@@ -32,13 +32,14 @@
             <label class="form-label">
                 Content <span class="text-danger">*</span>
             </label>
+            <div class="rich-editor"
+                data-id="blog_content"
+                data-name="content"
+                data-value="{{ old('content', $blog->content) }}">
 
-            @include('partials.editor', [
-                'name' => 'content',
-                'id' => 'blog_content',
-                'value' => old('content', $blog->content),
-                'required' => true
-            ])
+            </div>
+
+            
 
             @error('content')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -60,20 +61,25 @@
                 <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
         </div>
-
         <div class="row">
             <div class="col-md-6">
-                <div class="mb-3">
+                
                     <label>Author</label>
                     <input type="text" name="author" value="{{ $blog->author }}" class="form-control">
-                </div>
+                
+
             </div>
             <div class="col-md-6">
-                <div class="mb-3">
+                
                     <label>Role</label>
                     <input type="text" name="role" value="{{ $blog->role }}" class="form-control">
-                </div>
+                
+
             </div>
+        </div>
+        <div class="mb-3">
+            <label>LinkedIn URL</label>
+            <input type="url" name="linkedin" value="{{ $blog->linkedin }}" class="form-control">
         </div>
 
 

@@ -74,27 +74,40 @@
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">
-                Author
-            </label>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">
+                    Author
+                </label>
+        
+                <input type="text"
+                    name="author"
+                    class="form-control"
+                    value="{{ old('author', $blog->author ?? '') }}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">
+                    Role
+                </label>
+        
+                <input type="text"
+                    name="role"
+                    class="form-control"
+                    value="{{ old('role', $blog->role ?? '') }}">
 
-            <input type="text"
-                name="author"
-                class="form-control"
-                value="{{ old('author', $blog->author ?? '') }}">
+            </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">
-                Role
+                LinkedIn Profile URL
             </label>
-
-            <input type="text"
-                name="role"
-                class="form-control"
-                value="{{ old('role', $blog->role ?? '') }}">
+            <input type="url"
+                   name="linkedin"
+                   class="form-control @error('linkedin') is-invalid @enderror"
+                   value="{{ old('linkedin', $blog->linkedin ?? '') }}">
         </div>
+
 
         <div class="row">
             {{-- IMAGE --}}

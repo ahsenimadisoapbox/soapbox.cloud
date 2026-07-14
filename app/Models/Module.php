@@ -11,6 +11,7 @@ class Module extends Model
         'short_description',
         'description',
         'image',
+        'banner_image',
         'icon',
         'category_id',
         'challenger_heading',

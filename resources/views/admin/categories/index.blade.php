@@ -27,7 +27,7 @@
                 <tbody>
                     @foreach($categories as $key => $item)
                     <tr>
-                        <td>{{ $categories->firstItem() + $key }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->slug }}</td>
                         <td>
@@ -50,8 +50,6 @@
                 </tbody>
 
             </table>
-
-            {{ $categories->links() }}
 
         </div>
     </div>

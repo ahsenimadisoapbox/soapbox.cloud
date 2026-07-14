@@ -46,6 +46,43 @@ class ThankYouController extends Controller
                 'secondary_cta' => ['label' => 'Send Another Message', 'url' => '/contact'],
                 'meta_title'    => 'Message Sent | Soapbox.Cloud',
             ],
+            'demo' => [
+                'icon'        => '🎯',
+                'heading'     => 'Demo Request Submitted!',
+                'subheading'  => 'Thanks for your interest in Soapbox.Cloud.',
+                'intro'       => 'Our team has received your demo request and will contact you within <strong>24 hours</strong> to schedule your personalised walkthrough.',
+                'badge_text'  => 'Typically responds within 24 hours',
+                'badge_color' => '#2563eb',
+                'badge_bg'    => 'rgba(37,99,235,0.08)',
+                'accent'      => '#2563eb',
+                'steps' => [
+                [
+                'icon'  => '📩',
+                'title' => 'Request received successfully',
+                'body'  => 'Your demo request has been securely submitted to our team.'
+                ],
+                [
+                'icon'  => '🔍',
+                'title' => 'We review your requirements',
+                'body'  => 'Our team will review your industry, use case, and business needs.'
+                ],
+                [
+                'icon'  => '📅',
+                'title' => 'Demo scheduling',
+                'body'  => 'A product specialist will contact you shortly to schedule your personalised demo.'
+                ],
+                ],
+                'primary_cta'   => [
+                'label' => 'Back to Home',
+                'url'   => '/'
+                ],
+                'secondary_cta' => [
+                'label' => 'Explore Industries',
+                'url'   => '/industries'
+                ],
+                'meta_title'    => 'Demo Request Submitted | Soapbox.Cloud',
+                ],
+
         ];
 
         // fallback to contact if unknown source

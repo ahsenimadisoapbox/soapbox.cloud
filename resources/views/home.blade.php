@@ -8,40 +8,54 @@
 ])
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="{{asset('css/sliderstyles.css')}}">
+@endsection
+
 @section('content')
 
-<section class="hero min-h-500">
+<section class="hero home-hero min-h-500">
   <div class="container">
-
+ 
     <div class="hero-content" data-aos="fade-up" >
       <div class="row">
-        <div class="col-md-6">
-          <p class="hero-livebadge mb-4 text-center">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
-          <h1 class="fs-18 fw-normal text-muted">
-            <span class="fw-semibold text-gradient-blue">SOAPBOX.CLOUD™</span> — The <span class="text-first fw-bold fs-18">EHS software platform</span> built for operations that were never given the right tools.
+        <div class="col-lg-9 col-xl-5">
+          <p class="hero-tagline">Intelligent Platform for <span class="hero-tagline">Responsible Enterprises</span></p>
+          <h1 class="text-white fs-42 fw-800 text-uppercase">
+            Your safety data isn't missing. <br><span class="text-first fw-bold fs-38">It's disconnected.</span>
           </h1>
-          <div class="hero-stat mt-4" id="heroStat" data-aos="zoom-in">2,930,000</div>
-          <p class="text-secondary mb-4">
-            workers die every year from work-related accidents and diseases. 
-            <span class="hero-source px-1">
+          <!-- <div class="hero-stat mt-4" id="heroStat" data-aos="zoom-in">2,930,000</div> -->
+          <p class="text-white nav-badge p-2 mb-4">
+            One EHS platform. All modules across <br> safety, risk, compliance, audit and environment.
+            <!-- <span class="hero-source px-1">
               <i class="fa-solid fa-minus"></i> ILO, 2023
-            </span>
+            </span> -->
           </p>
-          <h3 class="text-first fw-semibold fs-5 my-4">No spreadsheet was ever designed to prevent this.</h3>
-          <a class="btn btn-custome text-white me-2" href="{{ route('modules.index') }}">See What's Live</a>
-          <a href="{{ route('eap') }}#diagnostic" class="btn btn-custome1" onclick="showPage('eap')">Run your self-diagnosis →</a>
+          <p class="text-white mb-4">
+           <span class="fw-semibold home-text-gradient-blue">SOAPBOX.CLOUD™ </span> connects every safety workflow in one system, with AI Assist inside each one.
+          Real-time visibility for operations that take safety seriously, without the enterprise weight.
+
+          </p>
+          <!-- <h3 class="text-first fw-semibold fs-5 my-4">No spreadsheet was ever designed to prevent this.</h3> -->
+           <div class="d-flex flex-column flex-sm-row gap-3">
+             <a class="btn btn-custome text-white me-2" href="{{ route('home') }}#modules">See What's Live</a>
+             <a href="{{ route('eap') }}#diagnostic" class="btn-custome1" onclick="showPage('eap')">Get Early Access →</a>
+
+           </div>
         </div>
         <div class="col-md-6 overflow-visible mt-3">
-          <div class="hero-img-wrapper">
+          <!-- <div class="hero-img-wrapper">
             <img src="{{ asset('images/dashboard-hero.webp') }}" alt="Dashboard Hero" class="hero-img" loading="lazy" />
-        </div>
+          </div> -->
         </div>
       </div>
-
+ 
     </div>
   </div>
+  
 </section>
-<section class="section-pad py-5" data-aos="zoom-in">
+ 
+<section class="section-statistics pb-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4 col-lg-3 mb-3 first">
@@ -90,193 +104,388 @@
       </div>
       <div class="col-md-6" data-aos="fade-up">
         <div class="text-first tag">THE PLATFORM</div>
-        <p class="platform">21 modules. Safety, environment, quality, risk, compliance — unified in one platform. Built for operations that take safety seriously, move fast, and demand real-time visibility from day one.</p>
+        <p class="platform">All modules. Safety, environment, quality, risk, compliance — unified in one platform. Built for operations that take safety seriously, move fast, and demand real-time visibility from day one.</p>
         <div class="row g-3">
-          <div class="col-md-6 col-lg-4">
-            <div class="founder-box" data-aos="zoom-in" data-aos-delay="100">21 modules</div>
+          <div class="col-md-6">
+            <div class="founder-box" data-aos="zoom-in" data-aos-delay="100">All modules</div>
           </div>
-          <div class="col-md-6 col-lg-4">
+          <div class="col-md-6">
             <div class="founder-box" data-aos="zoom-in" data-aos-delay="200">1 platform</div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="founder-box" data-aos="zoom-in" data-aos-delay="300">Live within in 7 days</div>
           </div>
         </div>
       </div>
     </div>
-    <p class="tag-line text-center mt-4">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
+    <p class="tag-line text-center mt-4 mb-0">Intelligent Platform for <span class="text-first">Responsible Enterprises</span></p>
   </div>
 </section>
-<section class="section-pad px-3 py-5" id="homepage-popup-trigger">
+<section class="section-pad px-3 py-5 d-none d-lg-block" id="homepage-popup-trigger">
   <div class="container max-w-1000" data-aos="fade-up">
     <!-- <div class="tag">RECOGNITION OVER PERSUASION</div> -->
     <h2 class="section-title">Common EHS Management Challenges</h2>
     <h3 class="section-sub">5 Gaps Nobody Talks About</h3>
+    <div class="challenge-header">
+            <div class="header-left">
+                <span></span>
+                <label>THE GAP</label>
+            </div>
+
+            <div class="header-right">
+                <label>SOAPBOX.CLOUD™</label>
+                <span></span>
+            </div>
+    </div>
     <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10"> THE GAP</h4></div>
-          <div class="gap-text">Incident happens. 3 days later it is logged. Context is lost.</div>
+      <div class="timeline-row">
+
+        <div class="num-box">01</div>
+
+        <div class="gap-card">
+          <h4>Incident happens.</h4>
+          <p>3 days later it is logged. Context is lost.</p>
         </div>
+
+        <div class="gap-icon">
+          <i class="bi bi-bell-fill"></i>
+        </div>
+
+        <div class="center-arrow">››</div>
+
+        <div class="solution-wrap">
+          <div class="solution-icon"><i class="bi bi-phone-fill"></i></div>
+
+          <div class="solution-card-home">
+            <h4>30-second mobile capture.</h4>
+            <p>Photo. Geo-tag. Every stakeholder notified instantly.</p>
+          </div>
+        </div>
+
       </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-success border-0 border-start border-4 border-success px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10">SOAPBOX.CLOUD™</h4></div>
-          <div class="gap-text" >30-second mobile capture. Photo. Geo-tag. Every stakeholder notified instantly.</div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="timeline-row">
+
+        <div class="num-box">02</div>
+
+        <div class="gap-card">
+          <h4>Corrective action assigned. </h4>
+          <p>Written in a notebook. Never followed up.</p>
+        </div>
+
+        <div class="gap-icon">
+          <i class="bi bi-bell-fill"></i>
+        </div>
+
+        <div class="center-arrow">››</div>
+
+        <div class="solution-wrap">
+          <div class="solution-icon"><i class="bi bi-phone-fill"></i></div>
+
+          <div class="solution-card-home">
+            <h4>Auto-created. Named owner.</h4>
+            <p> Deadline tracked. Closure verified with evidence.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="timeline-row">
+
+        <div class="num-box">03</div>
+
+          <div class="gap-card">
+              <h4>Regulator gives 48 hours notice.</h4>
+               <p>EHS Manager spends the night pulling files.</p>
+          </div>
+
+          <div class="gap-icon">
+              <i class="bi bi-bell-fill"></i>
+          </div>
+
+          <div class="center-arrow">››</div>
+
+            <div class="solution-wrap g-2">
+              <div class="solution-icon"><i class="bi bi-phone-fill"></i></div>
+
+              <div class="solution-card-home">
+                <h4>One click. Full audit pack.</h4>
+                <p> Organised, current, traceable. Ready in minutes.</p>
+              </div>
+            </div>
+
+          </div>
+      </div>
+      
+
+    <div class="row mb-2">
+      <div class="timeline-row">
+        <div class="num-box">04</div>
+        <div class="gap-card">
+          <h4>Risk assessment done 3 years ago.</h4>
+          <p>Sits in a folder. Hazard landscape has changed.</p>
+        </div>
+        <div class="gap-icon">
+          <i class="bi bi-bell-fill"></i>
+        </div>
+        <div class="center-arrow">››</div>
+
+        <div class="solution-wrap g-2">
+          <div class="solution-icon"><i class="bi bi-phone-fill"></i></div>
+
+          <div class="solution-card-home">
+            <h4>Live risk register.</h4>
+            <p>Linked to incidents and CAPAs. Flags reviews due.</p>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10"> THE GAP</h4></div>
-          <div class="gap-text">Corrective action assigned. Written in a notebook. Never followed up.</div>
+      <div class="timeline-row">
+
+        <div class="num-box">05</div>
+
+        <div class="gap-card">
+          <h4>Client asks for EHS data. </h4>
+          <p> Report manually assembled. Numbers don't reconcile.</p>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-success border-0 border-start border-4 border-success px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10">SOAPBOX.CLOUD™</h4></div>
-          <div class="gap-text" >Auto-created. Named owner. Deadline tracked. Closure verified with evidence.</div>
+
+        <div class="gap-icon">
+          <i class="bi bi-bell-fill"></i>
         </div>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10"> THE GAP</h4></div>
-          <div class="gap-text">Regulator gives 48 hours notice. EHS Manager spends the night pulling files.</div>
+
+        <div class="center-arrow">››</div>
+
+        <div class="solution-wrap g-2">
+          <div class="solution-icon"><i class="bi bi-phone-fill"></i></div>
+
+          <div class="solution-card-home">
+            <h4>Environmental data captured at source.</h4>
+            <p> EHS metrics generated automatically.</p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-success border-0 border-start border-4 border-success px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10">SOAPBOX.CLOUD™</h4></div>
-          <div class="gap-text" >One click. Full audit pack. Organised, current, traceable. Ready in minutes.</div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10"> THE GAP</h4></div>
-          <div class="gap-text">Risk assessment done 3 years ago. Sits in a folder. Hazard landscape has changed.</div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-success border-0 border-start border-4 border-success px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10">SOAPBOX.CLOUD™</h4></div>
-          <div class="gap-text" >Live risk register. Linked to incidents and CAPAs. Flags reviews due. Always current.</div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="bg-gradient-alert border-0 border-start border-4 border-warning px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10"> THE GAP</h4></div>
-          <div class="gap-text">Client asks for EHS data. Report manually assembled. Numbers don't reconcile.</div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="bg-gradient-success border-0 border-start border-4 border-success px-3 py-3" data-aos="fade-up">
-          <div class="gap-label">
-            <h4 class="fs-10">SOAPBOX.CLOUD™</h4></div>
-          <div class="gap-text" >Environmental data captured at source. EHS metrics generated automatically.</div>
-        </div>
+
       </div>
     </div>
   </div>
 </section>
-<section class="section-pad bg-light-blue py-5" id="modules">
-  <div class="container max-w-1000">
-    <!-- <div class="tag tag-green">LIVE NOW</div> -->
-    <h2 class="section-title">EHS Software Modules — Live Today</h2>
-    <h3 class="section-sub">Six Modules — Operational Today</h3>
-    <div class="row">
-      @foreach ($modules as $module)
-      <div class="col-md-6 mb-4">
-        <div class="flip-card" data-aos="zoom-in" data-aos-delay="100">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="{{ $module->image ? asset($module->image) : asset('images/image.jfif') }}" alt="{{ $module->title }}" class="img-fluid module-img" loading="lazy">
+<section class="ehs-mobile-section py-5 d-lg-none">
+    <div class="container">
+
+        <h2 class="section-title text-center">Common EHS Management Challenges</h2>
+        <h3 class="section-sub text-center">5 Gaps Nobody Talks About</h3>
+
+        <!-- CARD 1 -->
+        <div class="mobile-gap-card red-theme mt-5">
+
+            <div class="card-top-icon">
+                <div class="icon-circle">
+                    <i class="bi bi-bell-fill"></i>
+                </div>
+                <span class="badge-num">01</span>
             </div>
-            <div class="flip-card-back">
-              <div class="card-body p-2">
-                <h5 class="card-title text-first fw-bold mb-2">{{ $module->name }}</h5>
-                {!! $module->short_description !!}
-                <a href="{{route('modules.show', $module->slug)}}" class="nav-link text-third fs-6 mt-3">Learn more <i class="fa-solid fa-angles-right"></i></a>
-              </div>
+
+            <div class="card-body-content">
+                <span class="label gap">THE GAP</span>
+                <h4>Incident happens.</h4>
+                <p>3 days later it is logged. Context is lost.</p>
+
+                <div class="vs-divider">VS</div>
+
+                <span class="label solution">SOAPBOX.CLOUD™</span>
+                <h5>30-second mobile capture.</h5>
+                <p>Photo. Geo-tag. Every stakeholder notified instantly.</p>
             </div>
-          </div>
+
+            <div class="bottom-line"></div>
         </div>
-      </div>
-      @endforeach
+
+        <!-- CARD 2 -->
+        <div class="mobile-gap-card orange-theme">
+
+            <div class="card-top-icon">
+                <div class="icon-circle">
+                    <i class="bi bi-file-earmark-text-fill"></i>
+                </div>
+                <span class="badge-num">02</span>
+            </div>
+
+            <div class="card-body-content">
+                <span class="label gap">THE GAP</span>
+                <h4>Corrective action assigned.</h4>
+                <p>Written in a notebook. Never followed up.</p>
+
+                <div class="vs-divider">VS</div>
+
+                <span class="label solution">SOAPBOX.CLOUD™</span>
+                <h5>Auto-created. Named owner.</h5>
+                <p>Deadline tracked. Closure verified with evidence.</p>
+            </div>
+
+            <div class="bottom-line"></div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="mobile-gap-card purple-theme">
+
+            <div class="card-top-icon">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-event-fill"></i>
+                </div>
+                <span class="badge-num">03</span>
+            </div>
+
+            <div class="card-body-content">
+                <span class="label gap">THE GAP</span>
+                <h4>Regulator gives 48 hours notice.</h4>
+                <p>EHS Manager spends the night pulling files.</p>
+
+                <div class="vs-divider">VS</div>
+
+                <span class="label solution">SOAPBOX.CLOUD™</span>
+                <h5>One click. Full audit pack.</h5>
+                <p>Organised, current, traceable. Ready in minutes.</p>
+            </div>
+
+            <div class="bottom-line"></div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="mobile-gap-card blue-theme">
+
+            <div class="card-top-icon">
+                <div class="icon-circle">
+                    <i class="bi bi-folder-fill"></i>
+                </div>
+                <span class="badge-num">04</span>
+            </div>
+
+            <div class="card-body-content">
+                <span class="label gap">THE GAP</span>
+                <h4>Risk assessment done 3 years ago.</h4>
+                <p>Sits in a folder. Hazard landscape has changed.</p>
+
+                <div class="vs-divider">VS</div>
+
+                <span class="label solution">SOAPBOX.CLOUD™</span>
+                <h5>Live risk register.</h5>
+                <p>Linked to incidents and CAPAs. Flags reviews due.</p>
+            </div>
+
+            <div class="bottom-line"></div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="mobile-gap-card green-theme">
+
+            <div class="card-top-icon">
+                <div class="icon-circle">
+                    <i class="bi bi-bar-chart-fill"></i>
+                </div>
+                <span class="badge-num">05</span>
+            </div>
+
+            <div class="card-body-content">
+                <span class="label gap">THE GAP</span>
+                <h4>Client asks for EHS data.</h4>
+                <p>Report manually assembled. Numbers don't reconcile.</p>
+
+                <div class="vs-divider">VS</div>
+
+                <span class="label solution">SOAPBOX.CLOUD™</span>
+                <h5>Environmental data captured at source.</h5>
+                <p>EHS metrics generated automatically.</p>
+            </div>
+
+            <div class="bottom-line"></div>
+        </div>
+
     </div>
-    <p class="text-center">Plus 15 more modules. All connected. All included.
+</section>
+<section class="section-pad bg-gradient-customeblue py-5" id="modules">
+  <div class="container">
+    <!-- <div class="tag tag-green">LIVE NOW</div> -->
+    <h2 class="section-title text-white">EHS Software Modules — Live Today</h2>
+    <h3 class="section-sub text-white">Modules — Operational Today</h3>
+    
+      <div class="modules-slider-wrapper">
+        
+        <button class="nav-btn prev" aria-label="Scroll left">←</button>
+        <div class="slider-container">
+
+            @foreach ($modules as $module)
+
+                <div class="panel {{ $loop->first ? 'active' : '' }}"
+                    data-module-id="{{ $module->id }}"
+                    data-module-slug="{{ $module->slug }}"
+                    data-bg="{{ asset($module->image) }}">
+
+                    <div class="content">
+
+                        <h3>{{ $module->name }}</h3>
+
+                        <p>
+                            {{ Str::limit(strip_tags($module->short_description), 100) }}
+                        </p>
+
+                        <a href="{{route('modules.show', $module->slug)}}" class="nav-link text-third fs-6 mt-3">Learn more <i class="fa-solid fa-angles-right"></i></a>
+
+                    </div>
+
+                </div>
+
+                @endforeach
+                
+                
+        </div>
+        <button class="nav-btn next" aria-label="Scroll right">→</button>
+      </div>
+    
+    <p class="text-center text-white">All modules. All connected. All included.
       <a id="exploreBtn">
         Explore All Modules →
       </a>
     </p>
     <div id="modulesCard" class="modules-panel mt-4 d-none">
-      <div class="module-section">
-        <div class="module-title">SAFETY & INCIDENT</div>
-        <div class="module-tags">
-          <span class="moduletag active">Incident Management ✓</span>
-          <span class="moduletag">Near-Miss Reporting 🔜</span>
-          <span class="moduletag">Safety Observation 🔜</span>
-          <span class="moduletag">Event Tracking 🔜</span>
-          <span class="moduletag">Job Safety Analysis 🔜</span>
-        </div>
-      </div>
-      <div class="module-section">
-        <div class="module-title">RISK & COMPLIANCE</div>
-        <div class="module-tags">
-          <span class="moduletag active">Risk Management ✓</span>
-          <span class="moduletag active">Audit Management ✓</span>
-          <span class="moduletag active">CAPA Management ✓</span>
-          <span class="moduletag active">Compliance Management ✓</span>
-          <span class="moduletag active">NCR ✓</span>
-          <span class="moduletag">Operational Risk 🔜</span>
-        </div>
-      </div>
-      <div class="module-section">
-        <div class="module-title">Work Authorisation</div>
-        <div class="module-tags">
-          <span class="moduletag">Permit to Work 🔜</span>
-          <span class="moduletag">Hot Work Permit 🔜</span>
-          <span class="moduletag">Inspection Management 🔜</span>
-          <span class="moduletag">Checklists Management 🔜</span>
-        </div>
-      </div>
-      <div class="module-section">
-        <div class="module-title">WORKFORCE</div>
-        <div class="module-tags">
-          <span class="moduletag">Training & Competency 🔜</span>
-          <span class="moduletag">Occupational Health 🔜</span>
-          <span class="moduletag">Change Management 🔜</span>
-        </div>
-      </div>
-      <div class="module-section">
-        <div class="module-title">Environmental & Documents</div>
-        <div class="module-tags">
-          <span class="moduletag">HAZMAT Management 🔜</span>
-          <span class="moduletag">Waste Management 🔜</span>
-          <span class="moduletag">Documentation Management 🔜</span>
-        </div>
-      </div>
+      @foreach($categories as $category)
+          @if($category->modules->count())
+              <div class="module-section">
+                  <div class="module-title">
+                      {{ strtoupper($category->name) }}
+                  </div>
+                  <div class="module-tags">
+                      @foreach($category->modules as $module)
+                          @if($module->is_live)
+                              <a href="{{ route('modules.show', $module->slug) }}"
+                                class="moduletag active">
+                                  {{ $module->name }} ✓
+                              </a>
+                          @else
+                              <span class="moduletag">
+                                  {{ $module->name }} 🔜
+                              </span>
+                          @endif
+
+                      @endforeach
+
+                  </div>
+
+              </div>
+          @endif
+      @endforeach
+
       <div class="module-footer">
-        <span class="live">✓ Live Now — 6 modules</span>
-        <span class="coming ">Coming Soon — 15 modules</span>
+          <span class="live">
+              ✓ Live Now — {{ \App\Models\Module::where('is_live', 1)->count() }} modules
+          </span>
       </div>
+
       <div class="hero-actions mt-4">
-        <a href="{{{ route('eap') }}}" class="btn btn-custome text-white">Get Early Access</a>
+          <a href="{{ route('contact') }}" class="btn btn-custome text-white">
+              Get in Touch
+          </a>
       </div>
     </div>
   </div>
@@ -287,33 +496,78 @@
     <h2 class="section-title">Who It Is For</h2>
     <h3 class="section-sub" >Three people. Three realities. One platform.</h3>
     <div class="row">
-      <div class="col-md-4 pb-3" >
-        <div class="card border-0 rounded-4 shadow border-top border-success border-4 min-h-200">
-          <div class="card-body">
-            <h4 class="persona-role text-green">Operations Director</h4>
-            <div class="persona-pain"><i class="fa-solid fa-triangle-exclamation text-warning"></i> Reads monthly Excel reports two weeks late. Hopes nothing went wrong in the reporting gap.</div>
-            <div class="persona-fix"><span class=" check-bold">✓</span> One live dashboard. All sites. All data. Right now.</div>
+      <div class="col-md-4 pb-3">
+          <div class="persona-card">
+              <img src="{{ asset('images/OperationsDirector.webp') }}"
+                  class="persona-image"
+                  alt="Operations Director">
+              <div class="persona-overlay"></div>
+              <div class="persona-content">
+                  <h4 class="persona-role">
+                      Operations Director
+                  </h4>
+                  <div class="persona-details">
+                      <div class="persona-pain">
+                          <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                          Reads monthly Excel reports two weeks late.
+                          Hopes nothing went wrong in the reporting gap.
+                      </div>
+                      <div class="persona-fix">
+                          <span class="check-bold">✓</span>
+                          One live dashboard. All sites.
+                          All data. Right now.
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
       <div class="col-md-4 pb-3">
-        <div class="card border-0 rounded-4 shadow border-top border-primary border-4 min-h-200">
-          <div class="card-body">
-            <h4 class="persona-role text-blue"> HSE Manager</h4>
-            <div class="persona-pain"><i class="fa-solid fa-triangle-exclamation text-warning"></i> Compiles audit packs at midnight. Chases CAPAs by email. Knows every risk but can't prove it.</div>
-            <div class="persona-fix"><span class=" check-bold">✓</span> Everything organised. Everything retrievable. Time back for prevention.</div>
+          <div class="persona-card">
+              <img src="{{ asset('images/HSEManager.webp') }}"
+                  class="persona-image"
+                  alt="Operations Director">
+              <div class="persona-overlay"></div>
+              <div class="persona-content">
+                  <h4 class="persona-role">
+                      HSE Manager
+                  </h4>
+                  <div class="persona-details">
+                      <div class="persona-pain">
+                          <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                          Compiles audit packs at midnight. Chases CAPAs by email. Knows every risk but can't prove it.
+                      </div>
+                      <div class="persona-fix">
+                          <span class="check-bold">✓</span>
+                           Everything organised. Everything retrievable. Time back for prevention.
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
       <div class="col-md-4 pb-3">
-        <div class="card border-0 rounded-4 shadow border-top border-danger border-4 min-h-200">
-          <div class="card-body">
-            <h4 class="persona-role text-amber">Floor Worker</h4>
-            <div class="persona-pain"><i class="fa-solid fa-triangle-exclamation text-warning"></i> Noticed something unsafe. Didn’t report it. The form takes 20 minutes. Nothing happens anyway.</div>
-            <div class="persona-fix"><span class=" check-bold">✓</span> 30-second mobile report. Received. Acted on. Your observation matters.</div>
+          <div class="persona-card">
+              <img src="{{ asset('images/HSEFloorWorker.webp') }}"
+                  class="persona-image"
+                  alt="Operations Director">
+              <div class="persona-overlay"></div>
+              <div class="persona-content">
+                  <h4 class="persona-role">
+                      Floor Worker
+                  </h4>
+                  <div class="persona-details">
+                      <div class="persona-pain">
+                          <i class="fa-solid fa-triangle-exclamation text-warning"></i>
+                           Noticed something unsafe. Didn’t report it. The form takes 20 minutes. Nothing happens anyway.
+                      </div>
+                      <div class="persona-fix">
+                          <span class="check-bold">✓</span>
+                            30-second mobile report. Received. Acted on. Your observation matters.
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
+      
     </div>
   </div>
 </section>
@@ -388,4 +642,8 @@
     </div>
 </div>
 @endif
+
+@endsection
+@section('script')
+<script src="{{asset('js/sliderscript.js')}}"></script>
 @endsection

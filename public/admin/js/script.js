@@ -87,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const editor = e.target.closest('.editor-area');
         if (!editor) return;
 
-        const html = e.clipboardData?.getData('text/html');
-        const text = e.clipboardData?.getData('text/plain');
+        const html = e.clipboardData && e.clipboardData.getData('text/html');
+        const text = e.clipboardData && e.clipboardData.getData('text/plain');
 
         if (!html && !text) return;
 
@@ -132,18 +132,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
             exec(editor, 'insertHTML', table);
         }
+        console.log(e.target);
 
         /* IMAGE */
         if (btn.classList.contains('insertImage')) {
-            const url = prompt("Image URL:");
-            if (!url) return;
 
-            exec(editor, 'insertHTML', `
-                    <div class="media-wrapper">
-                        <img src="${url}">
-                        <div class="resize-handle"></div>
-                    </div>
-                `);
+            const imageUrl = prompt("Image URL:");
+            if (!imageUrl) return;
+
+            const media = window.mediaLibrary.find(item =>
+                imageUrl.includes(item.image)
+            );
+
+            let title = '';
+            let alt = '';
+            let redirectUrl = '';
+
+            if (media) {
+
+                title = media.title || '';
+                alt = media.alt || '';
+                redirectUrl = media.redirect_url || '';
+            }
+
+            let html = '';
+
+            if (redirectUrl) {
+
+                html = `
+            <div class="media-wrapper">
+
+                <a href="${redirectUrl}"
+                   target="_blank">
+
+                    <img src="${imageUrl}"
+                         alt="${alt}"
+                         title="${title}">
+
+                </a>
+
+                <div class="resize-handle"></div>
+
+            </div>
+        `;
+
+            } else {
+
+                html = `
+            <div class="media-wrapper">
+
+                <img src="${imageUrl}"
+                     alt="${alt}"
+                     title="${title}">
+
+                <div class="resize-handle"></div>
+
+            </div>
+        `;
+            }
+
+            exec(editor, 'insertHTML', html);
         }
 
         /* VIDEO */
@@ -174,16 +222,18 @@ document.addEventListener('DOMContentLoaded', () => {
         /* CODE VIEW */
         if (btn.classList.contains('toggleCode')) {
             editor.dataset.code = editor.dataset.code === 'true' ? 'false' : 'true';
-            editor.innerHTML = editor.dataset.code === 'true'
-                ? editor.textContent
-                : editor.innerHTML;
+            editor.innerHTML = editor.dataset.code === 'true' ?
+                editor.textContent :
+                editor.innerHTML;
         }
     });
 
     /* CHANGE HANDLER */
     document.addEventListener('change', (e) => {
 
-        const editor = getEditor(e.target.dataset?.target);
+        const editor = getEditor(
+            e.target.dataset && e.target.dataset.target
+        );
         if (!editor) return;
 
         if (e.target.classList.contains('formatBlock'))
@@ -216,7 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* IMAGE RESIZE */
-    let activeWrapper = null, startX = 0, startWidth = 0;
+    let activeWrapper = null,
+        startX = 0,
+        startWidth = 0;
 
     document.addEventListener('mousedown', e => {
         if (!e.target.classList.contains('resize-handle')) return;
@@ -253,7 +305,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('submit', () => {
         document.querySelectorAll('.editor-area').forEach(editor => {
             const hidden = document.getElementById(editor.id + '_input');
-            if (hidden) hidden.value = editor.innerHTML;
+            if (hidden) {
+                hidden.value = editor.innerHTML;
+
+                console.log(
+                    editor.id,
+                    editor.innerHTML.length,
+                    hidden.value.length
+                );
+            }
         });
     });
 

@@ -23,9 +23,9 @@ class EhsAssessmentController extends Controller
             'schedule'                   => 'nullable|date',
 
             'ai_summary' => 'nullable|string',
-'risk_score' => 'nullable|integer',
-'ehs_readiness_score' => 'nullable|integer',
-'assessment_answers' => 'nullable|string',
+            'risk_score' => 'nullable|integer',
+            'ehs_readiness_score' => 'nullable|integer',
+            'assessment_answers' => 'nullable|string',
 
             // Section 1 — Organisation
             'industry'                   => 'nullable|string|max:255',
@@ -87,30 +87,30 @@ class EhsAssessmentController extends Controller
         // Cast array fields to JSON for storage
         $saveData = $data;
 
-foreach (['problems', 'frameworks', 'priority'] as $arrayField) {
+        foreach (['problems', 'frameworks', 'priority'] as $arrayField) {
 
-    if (isset($saveData[$arrayField]) && is_array($saveData[$arrayField])) {
+            if (isset($saveData[$arrayField]) && is_array($saveData[$arrayField])) {
 
-        $saveData[$arrayField] = json_encode($saveData[$arrayField]);
+                $saveData[$arrayField] = json_encode($saveData[$arrayField]);
 
-    }
-}
+            }
+        }
 
-$saveData['ai_summary'] =
-    $data['ai_summary'] ?? null;
+        $saveData['ai_summary'] =
+            $data['ai_summary'] ?? null;
 
-$saveData['risk_score'] =
-    $data['risk_score'] ?? null;
+        $saveData['risk_score'] =
+            $data['risk_score'] ?? null;
 
-$saveData['ehs_readiness_score'] =
-    $data['ehs_readiness_score'] ?? null;
+        $saveData['ehs_readiness_score'] =
+            $data['ehs_readiness_score'] ?? null;
 
-$saveData['assessment_answers'] =
-    isset($data['assessment_answers'])
-        ? json_decode($data['assessment_answers'], true)
-        : null;
+        $saveData['assessment_answers'] =
+            isset($data['assessment_answers'])
+                ? json_decode($data['assessment_answers'], true)
+                : null;
 
-EhsAssessment::create($saveData);
+        EhsAssessment::create($saveData);
 
         Mail::to($data['email'])->send(new EhsThankYouMail($data));
 

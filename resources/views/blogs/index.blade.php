@@ -96,13 +96,13 @@
                 <div class="row g-4">
                     @foreach($latestBlogs as $blog)
                         <div class="col-md-6 col-lg-4">
-                            <div class="card border-0 h-100 shadow-sm">
+                            <div class="card border-0 h-100 shadow-sm bg-tinted-blue blogs-card">
                                 <a href="{{ route('blogs.show', $blog->slug) }}">
                                     <img src="{{ asset($blog->image) }}"
                                         class="card-img-top rounded-top"
                                         alt="{{ $blog->image_alt ?? $blog->title }}"
                                         loading="lazy"
-                                        style="height: 220px; object-fit: cover;">
+                                        style="height: 220px; object-fit: fill;">
                                 </a>
 
                                 <div class="card-body">

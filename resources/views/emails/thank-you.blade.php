@@ -244,31 +244,31 @@
                      <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 20px;">
                         <tr>
                            <td style="padding:0 6px;">
-                              <a href="https://www.instagram.com/soapbox.cloud/" target="_blank">
+                              <a href="https://www.instagram.com/soapbox.cloud/" target="_blank" rel="noopener noreferrer">
                                  <img src="https://soapbox.cloud/images/social/instagram.png" width="22" height="22"
                                     alt="Instagram" style="display:block; border-radius:4px;">
                               </a>
                            </td>
                            <td style="padding:0 6px;">
-                              <a href="https://www.facebook.com/soapboxsoftwaresolutions/" target="_blank">
+                              <a href="https://www.facebook.com/soapboxsoftwaresolutions/" target="_blank" rel="noopener noreferrer">
                                  <img src="https://soapbox.cloud/images/social/facebook.png" width="22" height="22"
                                     alt="Facebook" style="display:block; border-radius:4px;">
                               </a>
                            </td>
                            <td style="padding:0 6px;">
-                              <a href="https://www.linkedin.com/company/soapboxgroup/" target="_blank">
+                              <a href="https://www.linkedin.com/company/soapboxgroup/" target="_blank" rel="noopener noreferrer">
                                  <img src="https://soapbox.cloud/images/social/linkedin.png" width="22" height="22"
                                     alt="LinkedIn" style="display:block; border-radius:4px;">
                               </a>
                            </td>
                            <td style="padding:0 6px;">
-                              <a href="https://in.pinterest.com/soapboxsoftwaresolutions/" target="_blank">
+                              <a href="https://in.pinterest.com/soapboxsoftwaresolutions/" target="_blank" rel="noopener noreferrer">
                                  <img src="https://soapbox.cloud/images/social/pinterest.png" width="22" height="22"
                                     alt="Pinterest" style="display:block; border-radius:4px;">
                               </a>
                            </td>
                            <td style="padding:0 6px;">
-                              <a href="https://x.com/SoapBox_in" target="_blank">
+                              <a href="https://x.com/SoapBox_in" target="_blank" rel="noopener noreferrer">
                                  <img src="https://soapbox.cloud/images/social/twitter.png" width="22" height="22"
                                     alt="X / Twitter" style="display:block; border-radius:4px;">
                               </a>

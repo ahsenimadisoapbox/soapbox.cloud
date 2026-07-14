@@ -368,6 +368,7 @@
       text-align: left;
       color: #fff;
       transition: all .2s;
+      opacity: 0.82;
     }
 
     .opt-dash-btn .icon {
@@ -510,6 +511,10 @@
       color: #888;
       font-size: 12px;
       font-weight: 600;
+    }
+
+    .dash-card::before {
+    opacity: 0.7;
     }
 
     /* ── Slide animation ── */
@@ -787,257 +792,44 @@
 @endsection
 @section('content')
 <link href="{{asset('css/newstyle.css')}}" rel="stylesheet"/>
-<section class="hero m-1000 d-flex align-items-center min-h-500"  data-aos="zoom-in">
-    <div class="container">
+<section class="hero m-1000 d-flex align-items-center min-h-500 eap-hero">
+    <div class="container" data-aos="zoom-in">
         <div class="row justify-content-center text-center">
             <div class="col-lg-9 col-xl-8">
-                
-                <!-- Top Badge -->
-                <div class="hero-badge mx-auto mb-4">
-                    <span class="dot"></span>
-                    Early Adopters Program — Now Open
-                </div>
                 <!-- Heading -->
-                <h1 class="hero-title mb-4">
+                <h1 class="hero-title mb-4 text-white">
                 EHS built for how <br>
                 operations <span class="hero-highlight">actually work</span>
                 </h1>
                 <!-- Subtext -->
-                <h3 class="hero-subtitle mx-auto mb-5 fw-normal">
+                <h3 class="hero-subtitle mx-auto mb-5 fw-normal text-white">
                     Not a spreadsheet. Not a bloated enterprise suite. A better middle
                     path — structured enough for compliance, practical enough for the
                     field.
                 </h3>
                 <!-- Buttons -->
                 <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-                    <a href="how-it-works" class="btn btn-custome text-white" id="scrollToDiagnostic">
-                        Run your self-diagnosis
-                        <span class="ms-2">&rarr;</span>
-                    </a>
-                    <a href="how-it-works" class="btn hero-btn-secondary" id="scrollToHowItWorks">
-                        See how it works
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="problem-section" data-aos="fade-up">
-    <div class="container max-w-1000 custom-container ">
-        <!-- Divider -->
-        <!-- Heading -->
-        <div class="row">
-            <div class="col-lg-11 col-xl-10">
-                <p class="common-label">WHERE EHS BREAKS DOWN</p>
-                <h2 class="common-title">
-                When EHS Lives in Silos
-                </h2>
-                <h3 class="common-text">
-                    EHS spread across spreadsheets, inboxes, and site-level habits forces teams to rely on memory, follow-ups, and manual reconciliation.
-                </h3>
-            </div>
-        </div>
-        <!-- Cards -->
-        <div class="row g-4 problem-cards-row mt-0">
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in">
-                <div class="problem-card h-100">
-                    <div class="problem-icon-box">
-                        <i class="bi bi-exclamation-circle"></i>
-                        <h4 class="problem-card-title">Incidents reported late</h4>
-                    </div>
-                    <p class="problem-card-text">
-                        Verbal escalations, paper forms, and WhatsApp chains create dangerous delays.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="500">
-                <div class="problem-card h-100">
-                    <div class="problem-icon-box">
-                        <i class="bi bi-check2-square"></i>
-                        <h4 class="problem-card-title">CAPAs stay open</h4>
-                    </div>
-                    <p class="problem-card-text">
-                        Corrective actions without automated tracking rarely close on time.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="500">
-                <div class="problem-card h-100">
-                    <div class="problem-icon-box">
-                        <i class="bi bi-file-earmark-text"></i>
-                        <h4 class="problem-card-title"> Audit evidence scattered</h4>
-                    </div>
-                    <p class="problem-card-text">
-                        Evidence sits in too many places. Proving compliance becomes a sprint.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in">
-                <div class="problem-card h-100">
-                    <div class="problem-icon-box">
-                        <i class="bi bi-eye"></i>
-                        <h4 class="problem-card-title">Leadership blind spots</h4>
-                    </div>
-                    <p class="problem-card-text">
-                        Visibility arrives only after something has already gone wrong.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Statement -->
-        <div class="row">
-            <div class="col">
-                <p class="problem-footer text-muted">
-                    The real issue isn’t the people — it’s the operating model.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="middle-market-section bg-light-blue" id="how-it-works">
-    <div class="container max-w-1000 middle-market-container ">
-        <div class="row align-items-start gx-lg-5 gy-5">
-            <!-- LEFT CONTENT -->
-            <div class="col-lg-6" data-aos="zoom-in">
-                <div class="middle-market-content">
-                    <p class="common-label text-blue">WHY SOAPBOX.CLOUD™</p>
-                    <h2 class="common-title">
-                    Built for the middle market
-                    </h2>
-                    <h3 class="common-text">
-                        Soapbox.Cloud™ is being built for companies that have outgrown manual coordination but do not want to jump straight into bloated enterprise platforms. We believe there is a better middle path:
-                    </h3>
-                    <ul class="middle-market-list">
-                        <li>Structured enough for compliance</li>
-                        <li>Practical enough for operations</li>
-                        <li>Simple enough to roll out without months of friction</li>
-                    </ul>
-                    <p class="common-text">
-                        That is what the self-diagnosis below is for. It helps you quickly identify where your current EHS setup is creating delay, blind spots, reporting friction, or control gaps — and whether Soapbox.Cloud™ looks like the right fit for your team.
-                    </p>
-                    <a href="javascript:void(0)" class="btn middle-market-btn" id="scrollToDiagnostic2">
-                        Start self-diagnosis
+                    <a href="{{ route('contact') }}" class="btn btn-custome text-white" id="scrollToDiagnostic">
+                        Get in Touch
                         <span class="ms-2">&rarr;</span>
                     </a>
                 </div>
             </div>
-            <!-- RIGHT CARDS -->
-            <div class="col-lg-6" data-aos="zoom-in">
-                <div class="middle-market-cards">
-                    <div class="feature-box">
-                        <h4 class="feature-box-title">Real-time incident reporting</h4>
-                        <p class="feature-box-text">
-                            Field-friendly workflows that work even in low-connectivity environments. Issues surface in minutes, not days.
-                        </p>
-                    </div>
-                    <div class="feature-box">
-                        <h4 class="feature-box-title">Automated CAPA tracking</h4>
-                        <p class="feature-box-text">
-                            Corrective actions assigned, tracked, and escalated automatically — nothing falls through the cracks.
-                        </p>
-                    </div>
-                    <div class="feature-box">
-                        <h4 class="feature-box-title">Audit-ready by default</h4>
-                        <p class="feature-box-text">
-                            Evidence organised as you work. No pre-audit scramble. 12 months of records, accessible in seconds.
-                        </p>
-                    </div>
-                    <div class="feature-box">
-                        <h4 class="feature-box-title">Leadership visibility</h4>
-                        <p class="feature-box-text">
-                            Cross-site dashboards that give management a consolidated view — without waiting for someone to compile a report.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <p class="problem-footer text-muted mt-4">
-            The Early Adopters Programme is limited to the first cohort. Applications are reviewed, not open access.
-        </p>
-    </div>
-</section>
-<section class="founder-access-section" data-aos="fade-up">
-    <div class="container founder-access-container">
-        <!-- Top Label -->
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-10 col-xl-8">
-                <p class="founder-label">WHAT YOU GET</p>
-                <h2 class="founder-title">
-                Founder-tier access. <br>
-                For the teams who move first.
-                </h2>
-                <h3 class="founder-subtitle">
-                    Early adopters don’t just get early access — they help shape what gets built next.
-                </h3>
-            </div>
-        </div>
-        <!-- Cards -->
-        <div class="row g-4 justify-content-center founder-cards-row">
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in">
-                <div class="founder-card h-100">
-                    <span class="founder-card-number">01</span>
-                    <h4 class="founder-card-title">Founder pricing — locked in</h4>
-                    <p class="founder-card-text">
-                        Early adopter rates secured permanently. Your pricing never changes as the platform grows.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="500">
-                <div class="founder-card h-100">
-                    <span class="founder-card-number">02</span>
-                    <h4 class="founder-card-title">Product roadmap access</h4>
-                    <p class="founder-card-text">
-                        Direct line into our roadmap. Your operational reality shapes what we prioritise next.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="500">
-                <div class="founder-card h-100">
-                    <span class="founder-card-number">03</span>
-                    <h4 class="founder-card-title">Pilot-first onboarding</h4>
-                    <p class="founder-card-text">
-                        Start with one site, one workflow, or one team. Prove the value before committing to anything wider.
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-aos="zoom-in">
-                <div class="founder-card h-100">
-                    <span class="founder-card-number">04</span>
-                    <h4 class="founder-card-title">Dedicated setup support</h4>
-                    <p class="founder-card-text">
-                        We configure your environment with you — not a generic onboarding flow handed over to your IT team.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- CTA -->
-        <div class="row justify-content-center text-center">
-            <div class="col-auto">
-                <a href="javascript:void(0)" class="btn founder-btn" id="scrollToDiagnostic4">
-                    Apply for early access
-                    <span class="ms-2">&rarr;</span>
-                </a>
-            </div>
         </div>
     </div>
 </section>
-<section class="fit-section" data-aos="fade-up">
-    <div class="container  fit-container text-center">
-        <!-- Label -->
-        <p class="fit-label">WHO THIS IS FOR</p>
-        <!-- Title -->
-        <h2 class="fit-title">
-        We are not looking for everyone
+
+<section class="fit-section py-5">
+    <div class="container  fit-container text-center"  data-aos="fade-up">
+        <h2 class="section-title">
+            We are not looking for everyone
         </h2>
-        <!-- Subtitle -->
         <h3 class="fit-subtext">
             We are looking for teams that know their current model is starting to break,
             want a better way forward, and are willing to help shape a product built for
             mid-market operations.
         </h3>
-        <!-- Cards -->
         <div class="row justify-content-center g-4 fit-cards-row">
-            <!-- Good Fit -->
             <div class="col-md-6 col-lg-4" data-aos="zoom-in">
                 <div class="fit-card fit-card-good text-start">
                     <h4 class="fit-card-label fit-card-label-good">GOOD FIT</h4>
@@ -1050,7 +842,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- Not Right Now -->
             <div class="col-md-6 col-lg-4" data-aos="zoom-in">
                 <div class="fit-card fit-card-bad text-start">
                     <h4 class="fit-card-label fit-card-label-bad">NOT RIGHT NOW</h4>
@@ -1064,34 +855,162 @@
                 </div>
             </div>
         </div>
-        <!-- CTA -->
         <div class="fit-cta">
-            <a href="javascript:void(0)" class="btn fit-btn" id="scrollToDiagnostic3">
-                Find out if you’re a fit
+            <a href="{{ route('contact') }}" class="btn fit-btn">
+                Get in Touch
                 <span class="ms-2">&rarr;</span>
             </a>
         </div>
     </div>
 </section>
-<section class="diagnostic py-5 " id="diagnostic" data-aos="fade-up">
-    <div class="container max-w-1000">
-        <div class="diag-inner">
-            <div class="diag-header text-center mx-auto">
-                <div class="section-label">Self-diagnosis tool</div>
-                <h2>Before we show you the product,<br>let's understand your operation</h2>
-                <h3 class="fs-14 text-muted fw-normal lh-base">
-                    This is not a generic lead form. It's a short diagnostic to identify your gaps, your fit,
-                    and the right pilot path for your team. Answer honestly — the goal is to diagnose accurately,
-                    not qualify you in.
+
+<section class="py-5 bg-light-blue" id="how-it-works">
+    <div class="container max-w-1000 middle-market-container ">
+       
+          <h2 class="common-title">
+          EHS software built for the middle market, not the enterprise giants.
+          </h2>
+          <p class="sub-text">
+            You've outgrown spreadsheets and manual coordination. But the enterprise EHS platforms are overbuilt, overpriced, and take months to roll out. There's a better path between the two:
+            Simple enough to roll out without months of friction , Practical enough for operations , Simple enough to roll out without months of friction
+          </p>
+          <p class="sub-text">
+            The self-EHS Check shows you where your current EHS setup is creating delay, blind spots, reporting friction or control gaps, and whether SOAPBOX.CLOUD is the right fit for your team.
+          </p>
+
+               
+            
+            <!-- RIGHT CARDS -->
+            <div class="row justify-content-center g-4 my-3">
+              <div class="col-md-6">
+                <div class="feature-box">
+                    <h4 class="feature-box-title">Incidents surface in minutes, not days.</h4>
+                    <p class="feature-box-text">
+                        Field-friendly incident reporting that works even in low-connectivity environments. The event reaches the right people while it still matters.
+                    </p>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+
+                <div class="feature-box">
+                    <h4 class="feature-box-title">No corrective action falls through the cracks.</h4>
+                    <p class="feature-box-text">
+                        CAPAs assigned, tracked and escalated automatically, with AI Assist drafting stronger actions and flagging what's incomplete before closure.
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center g-4 my-3">
+              <div class="col-md-6">
+                  <div class="feature-box">
+                    <h4 class="feature-box-title">Audit-ready by default. Never the night before.</h4>
+                    <p class="feature-box-text">
+                      Evidence organised as you work. No pre-audit scramble. Twelve months of records, retrievable in seconds.
+                    </p>
+                  </div>
+              </div>
+              <div class="col-md-6">
+              <div class="feature-box">
+                        <h4 class="feature-box-title">Leadership sees every site, live.</h4>
+                        <p class="feature-box-text">
+                            Cross-site dashboards give management one consolidated view, without waiting for someone to compile a report.
+                        </p>
+                    </div>
+              </div>
+            </div>
+          <a href="{{ route('contact') }}" class="btn middle-market-btn">
+            Get in Touch
+            <span class="ms-2">&rarr;</span>
+          </a>
+
+    </div>
+</section>
+
+<section class="founder-access-section py-5">
+    <div class="container founder-access-container"  data-aos="fade-up">
+        <!-- Top Label -->
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10 col-xl-8">
+                <h2 class="founder-title">
+                Founder-tier access to the EHS platform you help shape.
+                </h2>
+                <h3 class="founder-subtitle">
+                    Move first and you don't just get early access. You get permanent advantages, and a direct hand in what gets built next.
                 </h3>
             </div>
-            <form id="diag-form" action="{{ route('ehs-assessment-store') }}" method="POST" novalidate>
-                @csrf
-                <div id="app"></div>
-            </form>
+        </div>
+        <!-- Cards -->
+        <div class="row g-4 justify-content-center founder-cards-row">
+            <div class="col-md-6 col-lg-3 py-1" data-aos="zoom-in">
+                <div class="founder-card h-100">
+                    <span class="founder-card-number">01</span>
+                    <h4 class="founder-card-title">Founder pricing, locked for good</h4>
+                    <p class="founder-card-text">
+                        Early-adopter rates secured permanently. Your price never moves as the platform grows.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 py-1" data-aos="zoom-in" data-aos-delay="500">
+                <div class="founder-card h-100">
+                    <span class="founder-card-number">02</span>
+                    <h4 class="founder-card-title">A direct line into the roadmap</h4>
+                    <p class="founder-card-text">
+                        Your operational reality decides what we build next. Not a feature request form, a seat at the table.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 py-1" data-aos="zoom-in" data-aos-delay="500">
+                <div class="founder-card h-100">
+                    <span class="founder-card-number">03</span>
+                    <h4 class="founder-card-title">Start with one site. Prove it first.</h4>
+                    <p class="founder-card-text">
+                        Pilot one workflow, one team, one location. See the value before you commit to anything wider.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 py-1" data-aos="zoom-in">
+                <div class="founder-card h-100">
+                    <span class="founder-card-number">04</span>
+                    <h4 class="founder-card-title">We configure it with you</h4>
+                    <p class="founder-card-text">
+                        Your environment set up alongside your team, not a generic onboarding flow handed to IT.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="row justify-content-center text-center">
+            <div class="col-auto">
+                <a href="{{ route('contact') }}" class="btn founder-btn">
+                    Get in Touch
+                    <span class="ms-2">&rarr;</span>
+                </a>
+            </div>
         </div>
     </div>
 </section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <h2 class="section-title mb-2">
+        Every EHS gap already costs you.<br>
+        Most are still hidden.
+      </h2>
+            
+      <form id="diag-form diagnostic" action="{{ route('ehs-assessment-store') }}" method="POST" novalidate>
+        @csrf
+        <div id="app"></div>
+      </form>
+      <h3 class="section-sub mx-auto mb-5 fw-normal">
+        Get your site-specific gap analysis with recommended corrective actions, EHS Readiness rating, and estimated risk score.
+      </h3>
+    </div>
+  </div>
+</section>
+
+
 @endsection
 @section('script')
 <script>
@@ -1107,7 +1026,7 @@ const phaseGrad = {
   3: "linear-gradient(160deg,#450A0A 0%,#DC2626 50%,#EF4444 100%)",
   4: "linear-gradient(160deg,#052E16 0%,#16A34A 50%,#56B62B 100%)"
 };
-const phaseClr = { 1: BLUE, 2: AMBER, 3: "#DC2626", 4: GREEN };
+const phaseClr = { 1: GREEN, 2: AMBER, 3: "#DC2626", 4: BLUE };
 const dashGrads = [
   "linear-gradient(135deg,#10B981,#059669)", "linear-gradient(135deg,#06B6D4,#0891B2)",
   "linear-gradient(135deg,#3B82F6,#2563EB)", "linear-gradient(135deg,#F59E0B,#D97706)",
@@ -1453,7 +1372,18 @@ function render() {
       <div class="phase-label" style="color:${pc};">PHASE ${q.phase} — ${q.pn}</div>
 
       <div class="cols slide-in" id="main-cols">
-        <!-- LEFT: gauge + fact card -->
+
+        <!-- LEFT: question + options -->
+        <div class="col-right">
+          <div class="q-title">${q.q}</div>
+          <div id="options-container">
+            ${renderOptions(q)}
+          </div>
+          ${state.step > 0 && q.type !== 'multi-select' && !state.selected
+            ? `<button class="back-btn" id="back-btn" type="button">← Back</button>`
+            : ''}
+        </div>
+        <!-- right: gauge + fact card -->
         <div class="col-left">
           <div class="gauge-card">
             <div class="gauge-wrap">
@@ -1474,17 +1404,6 @@ function render() {
           <div class="fact-card" style="background-image:${factOverlay};background-color:#0D2B4E;">
             <div class="fact-inner">${factContent}</div>
           </div>
-        </div>
-
-        <!-- RIGHT: question + options -->
-        <div class="col-right">
-          <div class="q-title">${q.q}</div>
-          <div id="options-container">
-            ${renderOptions(q)}
-          </div>
-          ${state.step > 0 && q.type !== 'multi-select' && !state.selected
-            ? `<button class="back-btn" id="back-btn" type="button">← Back</button>`
-            : ''}
         </div>
       </div>
     </div>`;
@@ -1533,8 +1452,9 @@ function renderOptions(q) {
   if (q.type === "dashboard") {
     return `<div class="opt-dash-grid">
       ${q.opts.map((o, i) => `
-        <button class="opt-dash-btn${state.selected === o.l ? ' dash-selected' : ''}"
+        <button class="opt-dash-btn${state.selected === o.l ? ' dash-selected' : ''}  dash-card"
           style="${state.selected === o.l ? '' : `background:${dashGrads[i]};border:none;`}"
+          
           data-label="${esc(o.l)}" data-type="dashboard">
           <div class="icon">${state.selected === o.l ? '✓' : dashIcons[i]}</div>
           <div class="lbl">${esc(o.l)}</div>
@@ -1740,7 +1660,7 @@ function renderResults() {
           ${state.submitted || !state.contact.name || !state.contact.email ? 'disabled' : ''}>
           ${state.submitted ? '✓ Submitted' : 'Get My Report →'}
         </button>
-        <div class="form-note">Built by 200+ years of team experience in regulated industries</div>
+        <div class="form-note">Built by 20+ years of team experience in regulated industries</div>
       </div>
     </div>
   </div>`;

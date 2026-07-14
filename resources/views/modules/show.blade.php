@@ -25,24 +25,30 @@
 }
 @endsection
 @section('content')
-<section class="hero">
-  <div class="container max-w-800 text-center" data-aos="zoom-in">
-    <div class="hero-livebadge mx-auto mb-4">
-      <span class="dot"></span>
-      LIVE — Available Now
-    </div>
-    <h1 class="section-title">{{ $module->name }} Software</h1>
-    <h3 class="section-sub mx-auto mb-4">
-      {!! $module->short_description !!}
-    </h3>
-    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-      <a href="{{ route('eap') }}" class="btn btn-custome text-white">
-        Get Early Access
-        <span class="ms-2">&rarr;</span>
-      </a>
-      <a href="https://calendly.com/mohammed-moizuddin-soapbox/30min" class="btn btn-outline-third py-2 px-3">
-        Schedule a Call
-      </a>
+<section class="hero module-hero" style="{{ $module->banner_image ? 'background-image: url(' . asset($module->banner_image) . ');' : '' }}">
+  <div class="container " data-aos="zoom-in">
+    <div class="row">
+      <div class="col-lg-9 col-xl-8">
+
+        <div class="hero-livebadge mx-auto mb-4">
+          <span class="dot"></span>
+          LIVE — Available Now
+        </div>
+        <h1 class="hero-title text-white">{{ $module->name }} Software</h1>
+        <h3 class="section-sub mx-auto mb-4">
+          {!! $module->short_description !!}
+        </h3>
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <a href="{{ route('eap') }}" class="btn btn-custome text-white">
+            Take the 30-sec EHS Check
+            <span class="ms-2">&rarr;</span>
+          </a>
+          <a href="https://calendly.com/mohammed-moizuddin-soapbox/30min" class="btn-custome1">
+            Schedule a Call
+          </a>
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
@@ -159,18 +165,18 @@
 </section>
 @endif
 @if($module->uses->count())
-<section class="py-5">
+<section class="py-5 bg-gradient-customeblue">
   <div class="container max-w-1200">
-    <div class="tag mb-2 ">WHO USES THIS</div>
-    <h2 class="section-title">Built for Every Role in the Safety Chain.</h2>
+    <div class="tag mb-2 text-white">WHO USES THIS</div>
+    <h2 class="section-title text-white">Built for Every Role in the Safety Chain.</h2>
     <div class="row d-flex g-4 my-4" data-aos="fade-up">
       @foreach($module->uses as $item)
       <div class="col-md-4">
-        <div class="vision-card p-4">
-          <h4 class="fw-semibold text-blue fs-16">
+        <div class="glass-effect p-4 min-h-140">
+          <h4 class="fw-semibold text-success fs-16">
             {{ $item->name }}
           </h4>
-          <p class="text-muted mt-2 mb-0 small">
+          <p class="text-visible mt-2 mb-0 small">
             {{ $item->description }}
           </p>
         </div>
@@ -197,7 +203,7 @@
 </section>
 @endif
 @if($module->frameworks->count())
-<section class="py-100">
+<section class="py-5">
   <div class="container max-w-1200">
     <div class="tag mb-2 ">COMPLIANCE FRAMEWORKS SUPPORTED</div>
     <ul class="nav mt-4">
@@ -267,9 +273,9 @@
   <div class="container px-3  justify-content-center text-center text-white">
     <div class="closer-content max-w-1200">
       <p class="closer-quote">
-        {{ $module->cta }}
+        {!! $module->cta !!}
       </p>
-      <a href="{{ route('eap') }}" class="btn btn-first" onclick="showPage('eap')">Get Early Access →</a>
+      <a href="{{ route('eap') }}" class="btn btn-first" onclick="showPage('eap')">Take the 30-sec EHS Check →</a>
     </div>
   </div>
 </section>

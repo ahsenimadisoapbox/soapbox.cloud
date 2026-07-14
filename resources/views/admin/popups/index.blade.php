@@ -102,8 +102,6 @@
 
             </table>
 
-            {{ $popups->links() }}
-
         </div>
     </div>
 

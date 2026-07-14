@@ -40,13 +40,7 @@
                 <td>{{ $industry->slug }}</td>
 
                 <td>
-
-                    <a href="{{ route('admin.industries.show', $industry->id) }}"
-                    class="btn btn-info btn-sm">
-
-                        View
-
-                    </a>
+                    <a href="{{ route('industry-details', $industry->slug) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-eye"></i></a>
 
                     <a href="{{ route('admin.industries.edit', $industry->id) }}"
                     class="btn btn-warning btn-sm">

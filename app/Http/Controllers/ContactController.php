@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Mail\ThankYouMail;
-use App\Models\Meta;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,8 +12,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $meta = $this->getMeta('contact');
-        return view('contact', compact('meta'));
+        return view('contact');
     }
 
     public function store(Request $request)
@@ -28,7 +26,7 @@ class ContactController extends Controller
             'country' => 'nullable|string|max:255',
             'hear_about' => 'nullable|string|max:255',
             'message' => 'required',
-            // 'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ]);
 
         // $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
@@ -43,7 +41,15 @@ class ContactController extends Controller
         //         ->withInput();
         // }
 
-        // unset($data['g-recaptcha-response']);
+        $captchaResponse = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'   => env('NOCAPTCHA_SECRET'),
+            'response' => $request->input('g-recaptcha-response'),
+            'remoteip' => $request->ip(),
+        ]);
+
+        if (!data_get($captchaResponse->json(), 'success')) {
+            return back()->withErrors(['danger' => 'Captcha verification failed']);
+        }
 
         $contact = Contact::create($data);
 
@@ -55,12 +61,6 @@ class ContactController extends Controller
 
     public function thankYou()
     {
-        $meta = $this->getMeta('thank-you');
-        return view('thank-you', compact('meta'));
-    }
-
-    public function getMeta($page)
-    {
-        return Meta::where('page', $page)->first();
+        return view('thank-you');
     }
 }
